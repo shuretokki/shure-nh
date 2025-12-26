@@ -1,0 +1,48 @@
+{ config, pkgs, ... }: {
+    imports = [
+        ./hardware.nix
+
+        ../../library/core/boot.nix
+        ../../library/core/network.nix
+        ../../library/core/audio.nix
+
+        ../../library/display/default.nix
+        ../../library/display/fonts.nix
+
+        ../../applications/developer.nix
+        ../../applications/essentials.nix
+
+        ../../users/shure/users.nix
+    ];
+
+    nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
+    };
+
+    nix.settings = {
+        auto-optimise-store = true;
+
+        substituters = [
+            "https://hyprland.cachix.org"
+            "https://vicinae.cachix.org"
+        ];
+
+        trusted-substituters = ["https://hyprland.cachix.org"];
+
+        trusted-public-keys = [
+            "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+            "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+        ];
+    };
+
+    networking.hostName = "shure";
+    console.keyMap = "us";
+
+	services.earlyoom.enable=true;
+	services.earlyoom.freeMemThreshold=5;
+
+    nix.settings.experimental-features = ["nix-command" "flakes"];
+    system.stateVersion = "25.11";
+}
