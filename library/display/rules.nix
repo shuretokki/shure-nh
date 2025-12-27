@@ -1,6 +1,5 @@
 {
   windowrulev2 = [
-    # Floating rules
     "float, class:^(pavucontrol)$"
     "float, class:^(blueman-manager)$"
     "float, class:^(nm-connection-editor)$"
@@ -18,6 +17,12 @@
     "workspace 5, class:^(Spotify)$"
     "workspace 4, class:^(localsend_app)$"
     "workspace 3, class:^(discord)$"
+
+    "idleinhibit focus, class:^(mpv)$"
+    "idleinhibit fullscreen, class:^(firefox)$"
+    "idleinhibit fullscreen, class:^(zen)$"
+
+    "opacity 1.0 override, class:^(xwayland)$"
   ];
 
   layerrule = [
