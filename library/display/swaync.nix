@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-    colors = import ./themes/current.nix;
+    theme = import ./themes/current.nix;
 in {
     services.swaync = {
         enable = true;
@@ -17,9 +17,9 @@ in {
         };
 
         style = ''
-            @define-color bg-color #${colors.bg};
-            @define-color fg-color #${colors.fg};
-            @define-color accent-color #${colors.blue};
+            @define-color bg-color #${theme.colors.bg};
+            @define-color fg-color #${theme.colors.fg};
+            @define-color accent-color #${theme.colors.blue};
 
             .notification {
                 background: @bg-color;
