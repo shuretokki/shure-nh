@@ -24,7 +24,7 @@
     programs.bash = {
         enable = true;
         shellAliases = {
-            rebuild = "sudo nixos-rebuild switch --flakes ~/shure-nh";
+            rebuild = "sudo nixos-rebuild switch --flake ~/shure-nh";
             eza = "eza --icons";
         };
         profileExtra = ''
@@ -53,14 +53,14 @@
 
             font = {
                 normal = {
-                size = 11;
+                size = 10.5;
                 normal = "SF Pro Rounded";
                 };
             };
 
             theme = {
                 light = {
-                name = "vicinae-light";
+                name = "gruvbox-light";
                 icon_theme = "default";
                 };
                 dark = {
