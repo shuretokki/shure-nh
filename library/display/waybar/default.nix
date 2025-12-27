@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  theme = import ../themes/current.nix;
+in {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -48,154 +51,95 @@
           "on-click" = "xdg-terminal-exec btop";
         };
 
-        "clock" = {
-          "format" = "{:%H:%M}";
-          "format-alt" = "{:%a, %d %b %H:%M}";
-          "tooltip" = false;
-          "on-click-right" = "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select";
+        "memory" = {
+          "interval" = 5;
+          "format" = "󰘚";
+          "on-click" = "xdg-terminal-exec btop";
         };
 
         "network" = {
-          "format-wifi" = "{essid} ({signalStrength}%)  ";
-          "format-ethernet" = "5G   ";
-          "format-disconnected" = "Disconnected ⚠";
-        };
-
-        "battery" = {
-          "format" = "{capacity}% {icon} ";
-          "format-icons" = [ "" "" "" "" "" ];
-        };
-
-        "custom/battery" = {
-          "format" = "100%   ";
-          "tooltip" = false;
-        };
-
-        "bluetooth" = {
-          "format" = "";
-          "format-disabled" = "󰂲";
-          "format-connected" = "";
-          "tooltip-format" = "Devices connected: {num_connections}";
-          "on-click" = "blueberry";
+          "format-wifi" = "";
+          "format-ethernet" = "󰈀";
+          "format-disconnected" = "󰖪";
+          "tooltip-format" = "{essid} ({signalStrength}%)";
+          "on-click" = "nm-connection-editor";
         };
 
         "pulseaudio" = {
-          "format" = "{volume}%  {icon} ";
-          "on-click" = "xdg-terminal-exec --app-id=com.omarchy.Wiremix -e wiremix";
-          "on-click-right" = "pamixer -t";
-          "tooltip-format" = "Playing at {volume}%";
-          "scroll-step" = 5;
-          "format-muted" = "";
+          "format" = "{icon}";
+          "format-muted" = "󰝟";
           "format-icons" = {
-            "default" = [ "" "" "" ];
+            "default" = [ "󰕿" "󰖀" "󰕾" ];
           };
+          "on-click" = "pavucontrol";
+          "tooltip-format" = "{volume}%";
+        };
+
+        "battery" = {
+          "states" = {
+            "warning" = 30;
+            "critical" = 15;
+          };
+          "format" = "{icon}";
+          "format-charging" = "󰂄";
+          "format-plugged" = "󰂄";
+          "format-icons" = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰁿" "󰂁" "󰂂" "󰁹" ];
+          "tooltip-format" = "{capacity}%";
+        };
+
+        "clock" = {
+          "format" = "{:%H:%M}";
+          "tooltip-format" = "{:%A, %B %d, %Y}";
         };
 
         "mpris" = {
-          "format" = "{player_icon}     {artist} / {title}";
-          "format-paused" = "{player_icon}   Paused";
+          "format" = "{player_icon} {title} - {artist}";
+          "format-paused" = "{status_icon} <i>{title} - {artist}</i>";
           "player-icons" = {
-            "default" = "▶";
-            "mpv" = "🎵";
+            "default" = "󰐊";
             "spotify" = "";
-            "firefox" = "";
           };
           "status-icons" = {
-            "paused" = "■";
+            "paused" = "󰏤";
           };
-          "ignored-players" = [ "firefox" ];
-          "max-length" = 35;
-          "interval" = 1;
-          "on-click" = "playerctl play-pause";
-          "on-click-right" = "playerctl next";
-          "on-click-middle" = "playerctl previous";
-        };
-
-        "group/tray-expander" = {
-          "orientation" = "inherit";
-          "drawer" = {
-            "transition-duration" = 600;
-            "children-class" = "tray-group-item";
-          };
-          "modules" = [ "custom/expand-icon" "tray" ];
-        };
-
-        "custom/expand-icon" = {
-          "format" = "";
-          "tooltip" = false;
-        };
-
-        "custom/screenrecording-indicator" = {
-          "on-click" = "omarchy-cmd-screenrecord";
-          "exec" = "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh";
-          "signal" = 8;
-          "return-type" = "json";
-        };
-
-        "tray" = {
-          "icon-size" = 12;
-          "spacing" = 17;
+          "max-length" = 40;
         };
       };
     };
     style = ''
       * {
-          color: #fbf1c7;
-          border: none;
+          font-family: "JetBrainsMono Nerd Font";
+          font-size: 12px;
           min-height: 0;
-          margin: 0;
-          padding: 0;
-          font-family: "SF Pro Rounded", "JetBrainsMonoNL Nerd Font";
-          font-size: 15px;
-          font-weight: 700;
       }
 
-      #waybar {
-          background: transparent;
-      }
-
-      .modules-left {
-          margin-left: 0px;
-      }
-
-      .modules-right {
-          margin-right: 0px;
+      window#waybar {
+          background-color: transparent;
+          color: #${theme.colors.fg};
       }
 
       #workspaces {
-          background: rgba(0, 0, 0, 0);
-          border-radius: 0px;
-          padding: 0px 4px;
+          background-color: #${theme.colors.bg};
           margin-top: 5px;
           margin-bottom: 5px;
-          margin-right: 10px;
+          margin-left: 5px;
+          border-radius: 0px;
       }
 
       #workspaces button {
-          background: rgba(40, 40, 40, 1);
-          color: #fbf1c7;
-          border: 1px solid #282828;
-          box-shadow: 0 1 0 2 #282828;
+          padding: 0px 8px;
+          color: #${theme.colors.fg};
           border-radius: 0px;
-          padding: 0px 4px;
-          margin: 0 4px;
-          transition: all 0.2s ease;
       }
 
       #workspaces button.active {
-          background: rgba(54, 54, 54, 1);
-          border-radius: 0px;
-          margin: 0 4px;
-          min-width: 40px;
+          background-color: #${theme.colors.active_border};
+          color: #${theme.colors.bg};
       }
 
-      #workspaces button:hover {
-          background: #888888;
-          color: #000000;
-      }
-
-      #workspaces button.empty {
-          opacity: 0.5;
+      #workspaces button.urgent {
+          background-color: #${theme.colors.red};
+          color: #${theme.colors.bg};
       }
 
       #network,
@@ -204,7 +148,7 @@
       #battery,
       #clock,
       #mpris {
-          background-color: rgba(40, 40, 40, 1);
+          background-color: #${theme.colors.bg};
           border-radius: 0px;
           padding: 0px 4px;
           margin-top: 5px;
@@ -222,13 +166,13 @@
 
       #battery.charging,
       #battery.plugged {
-          color: #a6e3a1;
-          border-color: #a6e3a1;
+          color: #${theme.colors.green};
+          border-color: #${theme.colors.green};
       }
 
       #network.disconnected {
-          color: #f38ba8;
-          border-color: #f38ba8;
+          color: #${theme.colors.red};
+          border-color: #${theme.colors.red};
       }
 
       #custom-expand-icon {
@@ -237,6 +181,12 @@
 
       tooltip {
           padding: 2px;
+          background-color: #${theme.colors.bg};
+          border: 1px solid #${theme.colors.active_border};
+      }
+
+      tooltip label {
+          color: #${theme.colors.fg};
       }
 
       #custom-update {
@@ -254,7 +204,7 @@
       }
 
       #custom-screenrecording-indicator.active {
-          color: #a55555;
+          color: #${theme.colors.red};
       }
     '';
   };

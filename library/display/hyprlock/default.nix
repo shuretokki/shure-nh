@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  theme = import ./themes/current.nix;
+  theme = import ../themes/current.nix;
 in {
   programs.hyprlock = {
     enable = true;
