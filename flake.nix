@@ -11,16 +11,6 @@
             inputs.hyprland.follows = "hyprland";
         };
 
-        hyprspace = {
-            url = "github:KZDKM/Hyprspace";
-            inputs.hyprland.follows = "hyprland";
-        };
-
-        hyprfocus = {
-            url = "github:VortexCoyote/hyprfocus";
-            inputs.hyprland.follows = "hyprland";
-        };
-
         vicinae-extensions = {
             url = "github:vicinaehq/extensions";
             inputs.nixpkgs.follows = "nixpkgs";
