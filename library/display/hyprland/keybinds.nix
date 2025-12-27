@@ -48,6 +48,14 @@
         "${alt} ${shift}, W, swapwindow, u"
         "${alt} ${shift}, S, swapwindow, d"
 
+        # Universal Clipboard
+        "${super}, C, exec, wtype -M ctrl c -m ctrl"
+        "${super}, V, exec, wtype -M ctrl v -m ctrl"
+        "${super}, X, exec, wtype -M ctrl x -m ctrl"
+        "${super}, A, exec, wtype -M ctrl a -m ctrl"
+        "${super}, Z, exec, wtype -M ctrl z -m ctrl"
+        "${super} ${shift}, Z, exec, wtype -M ctrl -M shift z -m ctrl -m shift"
+
         # Resizing (Shift + C/V)
         "${alt} ${shift}, C, resizeactive, -100 0"
         "${alt} ${shift}, V, resizeactive, 100 0"
