@@ -79,8 +79,8 @@ in {
       bar_title_enabled = true;
       bar_precedence_over_border = true;
       bar_buttons_alignment = "left";
-      bar_color = "rgba(${theme.colors.bg},1)";
-      bar_blur = true;
+      bar_color = "rgba(${theme.colors.bg}ff)";
+      bar_blur = "on";
       bar_padding = 12;
       bar_button_padding = 9;
 
@@ -107,7 +107,6 @@ in {
     swallow_regex = "^(warp-terminal)$";
     disable_hyprland_logo = true;
     force_default_wallpaper = 0;
-    new_window_takes_over_fullscreen = 2;
     allow_session_lock_restore = true;
 
     initial_workspace_tracking = false;

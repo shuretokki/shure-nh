@@ -10,12 +10,16 @@
     home.homeDirectory = "/home/shure";
     home.stateVersion = "25.11";
 
-   #  home.packages = with pkgs; [
-   #  ] ++ (with inputs.vicinae-extensions.packages.${pkgs.system}; [
-   #      bluetooth
-   #      nix
-   #      power-profile
-   #  ]);
+    home.pointerCursor = {
+        gtk.enable = true;
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Ice";
+        size = 24;
+    };
+
+    home.packages = with pkgs; [
+        bibata-cursors
+    ];
 
     programs.bash = {
         enable = true;

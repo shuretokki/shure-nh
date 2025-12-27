@@ -10,7 +10,7 @@
 
     touchpad = {
       natural_scroll = true;
-      tap-to-click = true;
+      "tap-to-click" = true;
       drag_lock = true;
     };
   };

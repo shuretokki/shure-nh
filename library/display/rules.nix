@@ -29,7 +29,7 @@
     "match:namespace vicinae, blur on"
     "match:namespace vicinae, ignore_alpha 0"
     "match:namespace vicinae, no_anim on"
-    "blur, waybar"
-    "ignorealpha 0.2, waybar"
+    "match:namespace waybar, blur one"
+    "match:namespace waybar, ignorealpha 0.2"
   ];
 }
