@@ -1,3 +1,4 @@
+# https://wiki.hypr.land/Configuring/Keywords/#exec-once
 { pkgs, ... }: {
   exec-once = [
     "${pkgs.vicinae}/bin/vicinae daemon"
