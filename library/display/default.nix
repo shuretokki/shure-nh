@@ -18,7 +18,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-        # swaync
+        swaync
         hyprshot
         hyprpaper
         hyprsunset
@@ -35,6 +35,7 @@ in {
             ./swayosd.nix
             ./hyprlock.nix
             ./hypridle.nix
+            ./swaync.nix
         ];
         wayland.windowManager.hyprland = {
             enable = true;
