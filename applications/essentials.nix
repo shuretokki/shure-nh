@@ -20,5 +20,11 @@
         pamixer
         pavucontrol
         localsend
+        fastfetch
+        fzf
+        bat
+        fd
+        unzip
+        zip
     ];
 }
