@@ -1,16 +1,18 @@
-{
+let
+  theme = import ./themes/current.nix;
+in {
   general = {
-    gaps_in = 4;
-    gaps_out = 4;
-    border_size = 1;
-    "col.inactive_border" = "rgba(515151ee)";
-    "col.active_border" = "rgba(00ff99ee)";
+    gaps_in = theme.hyprland.gaps_in;
+    gaps_out = theme.hyprland.gaps_out;
+    border_size = theme.hyprland.border_size;
+    "col.inactive_border" = "rgba(${theme.colors.inactive_border}ee)";
+    "col.active_border" = "rgba(${theme.colors.active_border}ee)";
 
     layout = "master";
   };
 
   decoration = {
-    rounding = 0;
+    rounding = theme.hyprland.rounding;
 
     shadow = {
       enabled = true;
@@ -53,14 +55,14 @@
       bar_title_enabled = true;
       bar_precedence_over_border = true;
       bar_buttons_alignment = "left";
-      bar_color = "rgba(40,40,40,1)";
+      bar_color = "rgba(${theme.colors.bg},1)";
       bar_blur = true;
       bar_padding = 12;
       bar_button_padding = 9;
 
       "hyprbars-button" = [
-        "rgb(ff4040), 13, , hyprctl dispatch killactive"
-        "rgb(eeee11), 13, , hyprctl dispatch fullscreen 1"
+        "rgb(${theme.colors.red}), 13, , hyprctl dispatch killactive"
+        "rgb(${theme.colors.yellow}), 13, , hyprctl dispatch fullscreen 1"
       ];
     };
 
