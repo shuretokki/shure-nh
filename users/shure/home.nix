@@ -1,16 +1,16 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, vars, ... }: {
     imports = [
         inputs.zen-browser.homeModules.beta
         # or inputs.zen-browser.homeModules.twilight
         # or inputs.zen-browser.homeModules.twilight-official
-        ./modules/vicinae.nix
-        ./modules/git.nix
-        ./modules/vscode.nix
-        ./modules/theming.nix
+        ../../library/home/vicinae.nix
+        ../../library/home/git.nix
+        ../../library/home/vscode.nix
+        ../../library/home/theming.nix
     ];
 
-    home.username = "shure";
-    home.homeDirectory = "/home/shure";
+    home.username = vars.username;
+    home.homeDirectory = "/home/${vars.username}";
     home.stateVersion = "25.11";
 
     programs.bash = {
@@ -35,4 +35,17 @@
     };
 
     programs.zen-browser.enable = true;
+
+    xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+            "text/plain" = "code.desktop";
+            "text/markdown" = "code.desktop";
+            "x-scheme-handler/http" = "zen.desktop";
+            "x-scheme-handler/https" = "zen.desktop";
+            "x-scheme-handler/about" = "zen.desktop";
+            "x-scheme-handler/unknown" = "zen.desktop";
+            "inode/directory" = "org.gnome.Nautilus.desktop";
+        };
+    };
 }

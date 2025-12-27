@@ -26,9 +26,15 @@
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
-    style.name = "adwaita-dark";
+    platformTheme.name = "kvantum";
+    style.name = "kvantum";
   };
+
+  home.packages = with pkgs; [
+    gruvbox-kvantum
+    libsForQt5.qtstyleplugin-kvantum
+    qt6Packages.qtstyleplugin-kvantum
+  ];
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {

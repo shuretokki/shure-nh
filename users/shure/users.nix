@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
-  users.users.shure = {
+{ pkgs, vars, ... }: {
+  users.users.${vars.username} = {
     isNormalUser = true; 
-    description = "shure";
+    description = vars.username;
     extraGroups = [ "networkmanager" "wheel" "input" "docker" "video" "audio" ];
     shell = pkgs.bash;
   };
