@@ -1,7 +1,7 @@
 # https://wiki.hypr.land/Configuring/Keywords/#exec-once
 { pkgs, ... }: {
   exec-once = [
-    "hyprctl setcursor macOS-Monterey 24"
+    "hyprctl setcursor macOS 24"
     "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     "fcitx5 -d"
     "${pkgs.vicinae}/bin/vicinae daemon"

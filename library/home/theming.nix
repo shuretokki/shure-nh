@@ -10,7 +10,7 @@
       package = pkgs.gruvbox-plus-icons;
     };
     cursorTheme = {
-      name = "macOS-Monterey";
+      name = "macOS";
       package = pkgs.apple-cursor;
       size = 24;
     };
@@ -42,7 +42,7 @@
   };
 
   home.pointerCursor = {
-    name = "macOS-Monterey";
+    name = "macOS";
     package = pkgs.apple-cursor;
     size = 24;
     gtk.enable = true;
@@ -64,7 +64,7 @@
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      cursor-theme = "macOS-Monterey";
+      cursor-theme = "macOS";
     };
   };
 }
