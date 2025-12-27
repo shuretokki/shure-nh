@@ -1,3 +1,4 @@
+# https://wiki.hypr.land/Configuring/Environment-variables/
 {
   env = [
     "XCURSOR_SIZE,24"
