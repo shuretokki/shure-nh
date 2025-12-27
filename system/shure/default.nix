@@ -10,8 +10,7 @@
         ../../library/display/fonts.nix
         ../../library/display/default.nix
 
-        ../../applications/developer.nix
-        ../../applications/essentials.nix
+        ../../applications
 
         ../../users/shure/users.nix
     ];
