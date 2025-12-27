@@ -38,22 +38,25 @@
 
     };
 
-    outputs = { self, nixpkgs, home-manager, vicinae, apple-fonts, ... }@inputs: {
-        nixosConfigurations.shure = nixpkgs.lib.nixosSystem {
+    outputs = { self, nixpkgs, home-manager, vicinae, apple-fonts, ... }@inputs: 
+    let
+        vars = import ./vars.nix;
+    in {
+        nixosConfigurations.${vars.hostname} = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            specialArgs = { inherit inputs; };
+            specialArgs = { inherit inputs vars; };
             modules = [
-                ./system/shure/default.nix
+                ./hosts/desktop/default.nix
 
                 home-manager.nixosModules.home-manager {
                     home-manager = {
                         useGlobalPkgs = true;
                         useUserPackages = true;
 
-                        extraSpecialArgs = { inherit inputs; };
+                        extraSpecialArgs = { inherit inputs vars; };
                         sharedModules = [ vicinae.homeManagerModules.default ];
 
-                        users.shure = import ./users/shure/home.nix;
+                        users.${vars.username} = import ./users/shure/home.nix;
                         backupFileExtension = "backup";
                     };
                 }
