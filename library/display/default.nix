@@ -1,54 +1,42 @@
 { config, pkgs, inputs, ... }:
 let
-    mouse-keybinds = import ./mouse-keybinds.nix { inherit pkgs; };
-    keybinds = import ./keybinds.nix { inherit pkgs; };
-    appearance = import ./appearance.nix;
-    rules = import ./rules.nix;
-    input = import ./input.nix;
-    env = import ./env.nix;
-    autostart = import ./autostart.nix { inherit pkgs; };
-    scripts = import ./scripts.nix { inherit pkgs; };
+  hyprland-config = import ./hyprland { inherit pkgs; };
 in {
-    programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-        xwayland.enable = true;
-        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-        portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+  };
+
+  environment.systemPackages = with pkgs; [
+    swaynotificationcenter
+    hyprshot
+    hyprpaper
+    hyprsunset
+    playerctl
+    vicinae
+    libnotify
+    wl-clipboard
+  ] ++ hyprland-config.scripts;
+
+  home-manager.users.shure = {
+    imports = [
+      ./wp
+      ./waybar
+      ./swayosd
+      ./hyprlock
+      ./hypridle
+      ./swaync
+    ];
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      plugins = [
+        inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      ];
+      settings = hyprland-config.settings;
     };
-
-    environment.systemPackages = with pkgs; [
-        swaynotificationcenter
-        hyprshot
-        hyprpaper
-        hyprsunset
-        playerctl
-        vicinae
-        libnotify
-        wl-clipboard
-        # polkit-kde-agent
-    ] ++ scripts;
-
-    home-manager.users.shure = {
-        imports = [
-            ./waybar.nix
-            ./swayosd.nix
-            ./hyprlock.nix
-            ./hypridle.nix
-            ./swaync.nix
-        ];
-        wayland.windowManager.hyprland = {
-            enable = true;
-
-            plugins = [
-                inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-            ];
-
-            settings = appearance // rules // input // env // autostart // {
-                monitor = ",preferred,auto,1";
-                bind = keybinds;
-                bindm = mouse-keybinds;
-            };
-    };
-};
+  };
 }
