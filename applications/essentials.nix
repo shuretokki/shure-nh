@@ -29,6 +29,6 @@
         wtype
         easyeffects
         networkmanagerapplet
-        fcitx5-configtool
+        qt6Packages.fcitx5-configtool
     ];
 }
