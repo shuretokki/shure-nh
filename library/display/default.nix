@@ -31,6 +31,7 @@ in {
             ./waybar.nix 
             ./swayosd.nix
             ./hyprlock.nix
+            ./hypridle.nix
         ];
         wayland.windowManager.hyprland = {
             enable = true;
