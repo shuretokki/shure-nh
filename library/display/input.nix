@@ -1,10 +1,11 @@
+# https://wiki.hypr.land/Configuring/Variables/#input
 {
   input = {
     kb_layout = "us";
     follow_mouse = 1;
     sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
     accel_profile = "flat";
-    
+
     repeat_rate = 50;
     repeat_delay = 300;
 
@@ -15,8 +16,8 @@
     };
   };
 
-  gestures = {
-    workspace_swipe = true;
-    workspace_swipe_fingers = 3;
-  };
+  # https://wiki.hypr.land/Configuring/Gestures/
+  gesture = [
+    "3, horizontal, workspace"
+  ];
 }
