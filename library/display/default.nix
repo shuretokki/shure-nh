@@ -20,6 +20,7 @@ in {
         # swaync
         hyprshot
         hyprpaper
+        hyprsunset
         vicinae
         libnotify
         wl-clipboard
@@ -27,8 +28,8 @@ in {
     ];
 
     home-manager.users.shure = {
-        imports = [ 
-            ./waybar.nix 
+        imports = [
+            ./waybar.nix
             ./swayosd.nix
             ./hyprlock.nix
             ./hypridle.nix
