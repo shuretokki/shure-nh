@@ -1,6 +1,7 @@
 # https://wiki.hypr.land/Configuring/Keywords/#exec-once
 { pkgs, ... }: {
   exec-once = [
+    "hyprctl setcursor macOS-Monterey 24"
     "${pkgs.vicinae}/bin/vicinae daemon"
     "hyprsunset"
     "swayosd-server"
