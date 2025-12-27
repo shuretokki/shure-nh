@@ -1,0 +1,8 @@
+{
+  "name": "ags-config",
+  "version": "1.0.0",
+  "main": "app.ts",
+  "dependencies": {
+    "astal": "latest"
+  }
+}
