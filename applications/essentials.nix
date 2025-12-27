@@ -13,6 +13,13 @@
         wget
         curl
         git
+        gh
         ripgrep
+        blueman
+        wireplumber
+        playerctl
+        pamixer
+        pavucontrol
+        localsend
     ];
 }

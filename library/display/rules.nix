@@ -4,8 +4,8 @@
   ];
 
   layerrule = [
-    "blur,vicinae"
-    "ignorealpha 0,vicinae"
-    "noanim,vicinae"
+    "match:namespace vicinae, blur on"
+    "match:namespace vicinae, ignore_alpha 0"
+    "match:namespace vicinae, no_anim on"
   ];
 }

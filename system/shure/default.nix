@@ -3,11 +3,12 @@
         ./hardware.nix
 
         ../../library/core/boot.nix
-        ../../library/core/network.nix
         ../../library/core/audio.nix
+        ../../library/core/network.nix
+        ../../library/core/bluetooth.nix
 
-        ../../library/display/default.nix
         ../../library/display/fonts.nix
+        ../../library/display/default.nix
 
         ../../applications/developer.nix
         ../../applications/essentials.nix

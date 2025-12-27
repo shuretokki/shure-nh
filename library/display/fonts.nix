@@ -19,7 +19,7 @@
     enable = true;
     defaultFonts = {
       serif = [ "New York" "Liberation Serif" "Noto Serif" ];
-      sansSerif = [ "SF Pro Display" "Liberation Sans" "Noto Sans" ];
+      sansSerif = [ "SF Pro Rounded" "SF Pro Display" "Liberation Sans" "Noto Sans" ];
       monospace = [ "SF Mono" "JetBrainsMono Nerd Font" ];
       emoji = [ "Noto Color Emoji" ];
     };

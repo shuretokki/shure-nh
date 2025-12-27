@@ -15,6 +15,7 @@ in {
 
     environment.systemPackages = with pkgs; [
         # swaync
+        hyprshot
         hyprpaper
         vicinae
         libnotify
