@@ -7,6 +7,7 @@ let
     input = import ./input.nix;
     env = import ./env.nix;
     autostart = import ./autostart.nix { inherit pkgs; };
+    scripts = import ./scripts.nix { inherit pkgs; };
 in {
     programs.hyprland = {
         enable = true;
@@ -26,7 +27,7 @@ in {
         libnotify
         wl-clipboard
         # polkit-kde-agent
-    ];
+    ] ++ scripts;
 
     home-manager.users.shure = {
         imports = [
