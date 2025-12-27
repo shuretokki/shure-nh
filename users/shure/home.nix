@@ -1,6 +1,8 @@
 { config, pkgs, inputs, ... }: {
     imports = [
         inputs.zen-browser.homeModules.beta
+        # or inputs.zen-browser.homeModules.twilight
+        # or inputs.zen-browser.homeModules.twilight-official
         ./modules/vicinae.nix
         ./modules/git.nix
         ./modules/vscode.nix
