@@ -4,6 +4,9 @@ let
     keybinds = import ./keybinds.nix { inherit pkgs; };
     appearance = import ./appearance.nix;
     rules = import ./rules.nix;
+    input = import ./input.nix;
+    env = import ./env.nix;
+    autostart = import ./autostart.nix { inherit pkgs; };
 in {
     programs.hyprland = {
         enable = true;
@@ -32,33 +35,11 @@ in {
                 inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
             ];
 
-            settings = appearance // rules // {
+            settings = appearance // rules // input // env // autostart // {
                 monitor = ",preferred,auto,1";
-
-                exec-once = [
-                    # "${pkgs.swaynotificationcenter}/bin/swaync"
-                    "${pkgs.vicinae}/bin/vicinae daemon"
-
-                    "wl-paste --type text --watch cliphist store"
-                    "wl-paste --type image --watch cliphist store"
-                ];
-
-            env = [
-                "XCURSOR_SIZE,24"
-                "HYPRCURSOR_SIZE,24"
-            ];
-
-            input = {
-                kb_layout = "us";
-                follow_mouse = 1;
-                touchpad = {
-                    natural_scroll = true;
-                };
+                bind = keybinds;
+                bindm = mouse-keybinds;
             };
-
-            bind = keybinds;
-            bindm = mouse-keybinds;
-        };
     };
 };
 }
