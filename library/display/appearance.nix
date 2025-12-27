@@ -96,4 +96,26 @@ in {
       panelHeight = 160;
     };
   };
+
+  misc = {
+    vfr = true;
+    vrr = 1;
+    focus_on_activate = true;
+    animate_manual_resizes = true;
+    animate_mouse_windowdragging = true;
+    enable_swallow = true;
+    swallow_regex = "^(warp-terminal)$";
+    disable_hyprland_logo = true;
+    force_default_wallpaper = 0;
+    new_window_takes_over_fullscreen = 2;
+    allow_session_lock_restore = true;
+
+    initial_workspace_tracking = false;
+  };
+
+  cursor = {
+    no_hardware_cursors = true;
+    enable_hyprcursor = true;
+    warp_on_change_workspace = true;
+  };
 }
