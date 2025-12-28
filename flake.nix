@@ -1,6 +1,17 @@
 {
     description = "system config";
 
+    nixConfig = {
+        extra-substituters = [
+            "https://hyprland.cachix.org"
+            "https://vicinae.cachix.org"
+        ];
+        extra-trusted-public-keys = [
+            "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+            "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+        ];
+    };
+
     inputs = {
         nixpkgs.url = "nixpkgs/nixos-unstable";
         hyprland.url = "github:hyprwm/Hyprland";
@@ -47,7 +58,7 @@
     let
         vars = import ./vars.nix;
     in {
-        nixosConfigurations.${vars.hostname} = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.default= nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs vars; };
             modules = [

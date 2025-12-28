@@ -7,7 +7,7 @@ in {
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.sleek;
-    colorScheme = "gruvbox";
+    colorScheme = "AyuDark";
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay
