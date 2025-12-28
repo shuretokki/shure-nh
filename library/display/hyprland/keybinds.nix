@@ -1,5 +1,5 @@
 # https://wiki.hypr.land/Configuring/Binds/
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
     let
         super = "SUPER";
         alt = "ALT";
@@ -9,7 +9,7 @@
         terminal = "warp-terminal";
         browser = "zen";
         fileManager = "${pkgs.nautilus}/bin/nautilus";
-        musicPlayer = "spotify";
+        musicPlayer = vars.musicPlayer;
 
         launch = class: cmd: "exec, hyprctl clients | grep -i 'class: ${class}' && hyprctl dispatch focuswindow 'class:${class}' || ${cmd}";
 
