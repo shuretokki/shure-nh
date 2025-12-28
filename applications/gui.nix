@@ -2,10 +2,8 @@
     nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages = with pkgs; [
-        spotify
         typora
         nautilus
-        warp-terminal
         localsend
     ];
 }
