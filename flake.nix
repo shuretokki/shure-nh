@@ -61,7 +61,7 @@
                         extraSpecialArgs = { inherit inputs vars; };
                         sharedModules = [ vicinae.homeManagerModules.default ];
 
-                        users.${vars.username} = import ./users/shure/home.nix;
+                        users.${vars.username} = import ./users/home.nix;
                         backupFileExtension = "backup";
                     };
                 }

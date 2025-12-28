@@ -13,7 +13,7 @@
 
         ../../applications
 
-        ../../users/shure/users.nix
+        ../../users/users.nix
     ];
 
     nix.gc = {
