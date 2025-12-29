@@ -13,6 +13,9 @@ pkgs.stdenv.mkDerivation {
     mkdir -p $out/share/sddm/themes/SilentSDDM
     cp -R ./* $out/share/sddm/themes/SilentSDDM
 
+    find $out/share/sddm/themes/SilentSDDM -type f -name "*.qml" -exec sed -i 's/RedHatDisplay/SF Pro Rounded/g' {} +
+    find $out/share/sddm/themes/SilentSDDM -type f -name "*.conf" -exec sed -i 's/RedHatDisplay/SF Pro Rounded/g' {} +
+
     ${pkgs.lib.optionalString (background != null) ''
       if [ -f "${toString background}" ]; then
         cp "${toString background}" $out/share/sddm/themes/SilentSDDM/backgrounds/custom.jpg
