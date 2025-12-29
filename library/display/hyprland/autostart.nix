@@ -13,8 +13,6 @@
     "hyprctl setcursor macOS 24"
     "hyprsunset"
 
-    "ags run ~/.config/ags/app.tsx --gtk 3"
-
     "swayosd-server"
     "fcitx5 -d"
   ];
