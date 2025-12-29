@@ -1,3 +1,4 @@
+/** @jsxImportSource ags/gtk3 */
 import { Astal, Gtk, Gdk } from "ags/gtk3"
 import app from "ags/gtk3/app"
 import { exec, execAsync } from "ags/process"
@@ -31,9 +32,8 @@ export default function WallpaperPicker(monitor: number) {
         application={app}
         visible={false}
         keymode={Astal.Keymode.EXCLUSIVE}
-        onKeyPressEvent={(self, event: Gdk.Event) => {
-            const [, keyval] = event.get_keyval()
-            if (keyval === Gdk.KEY_Escape) {
+        onKeyPressEvent={(self, event: Gdk.EventKey) => {
+            if (event.keyval === Gdk.KEY_Escape) {
                 self.hide()
             }
         }}>
@@ -41,13 +41,13 @@ export default function WallpaperPicker(monitor: number) {
             <label class="picker-title" label="Wallpaper Picker" />
             <box class="picker-controls" spacing={10}>
                 <label label="Transition:" />
-                <comboboxtext
+                <Gtk.ComboBoxText
                     active={1}
                     onChanged={(self) => setTransition(self.get_active_text() || "fade")}
                     $={(self) => transitions.forEach(t => self.append_text(t))}
                 />
                 <label label="Monitor:" />
-                <comboboxtext
+                <Gtk.ComboBoxText
                     active={0}
                     onChanged={(self) => setSelectedMonitor(self.get_active_text() || "all")}
                     $={(self) => {
@@ -59,15 +59,15 @@ export default function WallpaperPicker(monitor: number) {
                     }}
                 />
             </box>
-            <scrolledwindow class="picker-scroll" minContentHeight={400} minContentWidth={600}>
-                <flowbox
+            <Gtk.ScrolledWindow class="picker-scroll" minContentHeight={400} minContentWidth={600}>
+                <Gtk.FlowBox
                     class="picker-grid"
                     minChildrenPerLine={3}
                     maxChildrenPerLine={6}
                     $={(self) => {
                         wallpapers.forEach((wp: string) => {
                             const path = `${WP_DIR}/${wp}`
-                            const btn = <button
+                            const btn = (<button
                                 class="wp-button"
                                 onClicked={() => {
                                     const m = selectedMonitor()
@@ -78,15 +78,15 @@ export default function WallpaperPicker(monitor: number) {
                                     execAsync(cmd)
                                 }}>
                                 <box vertical>
-                                    <image file={path} pixelSize={150} />
+                                    <Gtk.Image file={path} pixelSize={150} />
                                     <label label={wp} maxWidthChars={15} ellipsize={3} />
                                 </box>
-                            </button>
+                            </button>) as any
                             self.add(btn)
                         })
                     }}
                 />
-            </scrolledwindow>
+            </Gtk.ScrolledWindow>
             <button
                 class="picker-close"
                 label="Close"
