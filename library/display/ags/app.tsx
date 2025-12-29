@@ -4,7 +4,7 @@ import Bar from "./widget/Bar"
 import WallpaperPicker from "./widget/WallpaperPicker"
 
 app.start({
-    css: "./style.scss",
+    // css: "./style.scss",
     main() {
         const display = Gdk.Display.get_default()
         if (display) {
