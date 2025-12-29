@@ -23,7 +23,7 @@ in {
 
   home-manager.users.${vars.username} = {
     imports = [
-      ./wp
+      ./stylix.nix
       ./waybar
       ./swayosd
       ./hyprlock
