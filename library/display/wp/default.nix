@@ -3,7 +3,6 @@
 
   systemd.user.services.swww = {
     Unit = {
-      Description = "Efficient animated wallpaper daemon for wayland";
       After = [ "graphical-session.target" ];
       PartOf = [ "graphical-session.target" ];
     };
