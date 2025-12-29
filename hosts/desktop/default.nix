@@ -1,6 +1,6 @@
 { config, pkgs, vars, ... }: {
     imports = [
-        ./hardware.nix
+        ./hardware-configuration.nix
 
         ../../library/core/boot.nix
         ../../library/core/audio.nix
@@ -12,8 +12,6 @@
         ../../library/display/default.nix
 
         ../../applications
-
-        ../../users/users.nix
     ];
 
     nix.gc = {
