@@ -1,12 +1,17 @@
-{ vars, ... }: {
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      ipc = "on";
-      splash = false;
+{ pkgs, vars, ... }: {
+  home.packages = [ pkgs.swww ];
 
-      preload = ["/home/${vars.username}/${vars.wallpaperDir}/001.jpg"];
-      wallpaper = [",/home/${vars.username}/${vars.wallpaperDir}/001.jpg"];
+  systemd.user.services.swww = {
+    Unit = {
+      Description = "Efficient animated wallpaper daemon for wayland";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
     };
+    Service = {
+      ExecStart = "${pkgs.swww}/bin/swww-daemon";
+      ExecStartPost = "${pkgs.swww}/bin/swww img /home/${vars.username}/${vars.wallpaperDir}/001.jpg --transition-type grow --transition-pos top-right --transition-duration 2";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }
