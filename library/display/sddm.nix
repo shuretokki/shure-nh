@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation {
     owner = "uiriansan";
     repo = "SilentSDDM";
     rev = "master";
-    sha256 = "1brvya8r5q03b4jhwv1dqnllaw3iw9d1fnj8ybz9r6gcd1mbf161";
+    hash = "sha256-znjp0gAxt+1wkxp/rqc0NPAnQGikbCAylgWGussZj0I=";
   };
 
   installPhase = ''
