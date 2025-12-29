@@ -10,6 +10,8 @@
     "hyprctl setcursor macOS 24"
     "hyprsunset"
 
+    "ags run"
+
     "swayosd-server"
     "fcitx5 -d"
   ];
