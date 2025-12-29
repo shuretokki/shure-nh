@@ -3,6 +3,7 @@
     enable = true;
     package = pkgs.kdePackages.sddm;
     wayland.enable = true;
+    autoNumlock = true;
     theme = "SilentSDDM";
     extraPackages = with pkgs.kdePackages; [
       qtmultimedia
