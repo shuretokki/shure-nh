@@ -6,9 +6,8 @@ in {
   general = {
     gaps_in = 5;
     gaps_out = 10;
-    border_size = 2;
-    "col.inactive_border" = "rgba(${colors.base03}ee)";
-    "col.active_border" = "rgba(${colors.base0D}ee)";
+    # "col.inactive_border" = "rgba(${colors.base03}ee)";
+    # "col.active_border" = "rgba(${colors.base0D}ee)";
 
     # layout = "master";
   };
@@ -20,7 +19,7 @@ in {
       enabled = true;
       range = 40;
       render_power = 4;
-      color = "0x66000000";
+      # color = "0x66000000";
       offset = "0 4";
       scale = 1.0;
     };
