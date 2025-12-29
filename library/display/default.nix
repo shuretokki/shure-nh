@@ -13,7 +13,7 @@ in {
   environment.systemPackages = with pkgs; [
     swaynotificationcenter
     hyprshot
-    hyprpaper
+    swww
     hyprsunset
     playerctl
     vicinae
@@ -24,7 +24,7 @@ in {
   home-manager.users.${vars.username} = {
     imports = [
       ./wp
-      ./waybar
+      ./ags
       ./swayosd
       ./hyprlock
       ./hypridle
