@@ -1,19 +1,20 @@
 # https://wiki.hypr.land/Configuring/Variables/
+{ config }:
 let
-  theme = import ../themes/current.nix;
+  colors = config.lib.stylix.colors;
 in {
   general = {
-    gaps_in = theme.hyprland.gaps_in;
-    gaps_out = theme.hyprland.gaps_out;
-    border_size = theme.hyprland.border_size;
-    "col.inactive_border" = "rgba(${theme.colors.inactive_border}ee)";
-    "col.active_border" = "rgba(${theme.colors.active_border}ee)";
+    gaps_in = 5;
+    gaps_out = 10;
+    border_size = 2;
+    "col.inactive_border" = "rgba(${colors.base03}ee)";
+    "col.active_border" = "rgba(${colors.base0D}ee)";
 
     # layout = "master";
   };
 
   decoration = {
-    rounding = theme.hyprland.rounding;
+    rounding = 10;
 
     shadow = {
       enabled = true;
@@ -81,14 +82,14 @@ in {
       bar_title_enabled = true;
       bar_precedence_over_border = true;
       bar_buttons_alignment = "left";
-      bar_color = "rgba(${theme.colors.bg}ff)";
+      bar_color = "rgba(${colors.base00}ff)";
       bar_blur = "on";
       bar_padding = 12;
       bar_button_padding = 9;
 
       "hyprbars-button" = [
-        "rgb(${theme.colors.red}), 13, , hyprctl dispatch killactive"
-        "rgb(${theme.colors.yellow}), 13, , hyprctl dispatch fullscreen 1"
+        "rgb(${colors.base08}), 13, , hyprctl dispatch killactive"
+        "rgb(${colors.base0A}), 13, , hyprctl dispatch fullscreen 1"
       ];
     };
   };

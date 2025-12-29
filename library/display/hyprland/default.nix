@@ -1,6 +1,6 @@
-{ pkgs, vars, ... }:
+{ config, pkgs, vars, ... }:
 let
-  appearance = import ./appearance.nix;
+  appearance = import ./appearance.nix { inherit config; };
   rules = import ./rules.nix;
   input = import ./input.nix;
   env = import ./env.nix { inherit pkgs; };
