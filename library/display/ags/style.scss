@@ -12,74 +12,74 @@ $active_border: #a89984;
 $inactive_border: #515151;
 
 * {
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 12px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
 }
 
 .Bar {
-    background-color: transparent;
-    color: $fg;
+  background-color: transparent;
+  color: $fg;
 
-    .Workspaces {
-        background-color: $bg;
-        margin: 5px 0 5px 5px;
-        
-        .workspace-button {
-            padding: 0 8px;
-            color: $fg;
-            border-radius: 0;
-            background: none;
-            border: none;
-            box-shadow: none;
+  .Workspaces {
+    background-color: $bg;
+    margin: 5px 0 5px 5px;
 
-            &.active {
-                background-color: $active_border;
-                color: $bg;
-            }
+    .workspace-button {
+      padding: 0 8px;
+      color: $fg;
+      border-radius: 0;
+      background: none;
+      border: none;
+      box-shadow: none;
 
-            &.occupied {
-                color: $yellow;
-            }
-        }
+      &.active {
+        background-color: $active_border;
+        color: $bg;
+      }
+
+      &.occupied {
+        color: $yellow;
+      }
     }
+  }
 
-    .Media {
-        background-color: $bg;
-        margin: 5px 0;
-        padding: 0 32px;
+  .Media {
+    background-color: $bg;
+    margin: 5px 0;
+    padding: 0 32px;
+  }
+
+  .SysTray {
+    background-color: $bg;
+    margin: 5px 5px 5px 0;
+    padding: 0 10px;
+
+    .Clock {
+      font-weight: bold;
     }
-
-    .SysTray {
-        background-color: $bg;
-        margin: 5px 5px 5px 0;
-        padding: 0 10px;
-
-        .Clock {
-            font-weight: bold;
-        }
-    }
+  }
 }
 
 .WallpaperPicker {
-    background-color: rgba(40, 40, 40, 0.9);
-    border: 1px solid $active_border;
-    padding: 20px;
+  background-color: rgba(40, 40, 40, 0.9);
+  border: 1px solid $active_border;
+  padding: 20px;
 
-    .wallpaper-card {
-        background-color: $bg;
-        border: 1px solid $inactive_border;
-        padding: 5px;
-        
-        &:hover {
-            border-color: $active_border;
-        }
+  .wallpaper-card {
+    background-color: $bg;
+    border: 1px solid $inactive_border;
+    padding: 5px;
 
-        &.selected {
-            border-color: $green;
-        }
-
-        image {
-            border-radius: 4px;
-        }
+    &:hover {
+      border-color: $active_border;
     }
+
+    &.selected {
+      border-color: $green;
+    }
+
+    image {
+      border-radius: 4px;
+    }
+  }
 }
