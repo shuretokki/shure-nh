@@ -10,9 +10,9 @@
     noto-fonts-color-emoji
     liberation_ttf
 
-    inputs.apple-fonts.packages.${pkgs.system}.sf-pro
-    inputs.apple-fonts.packages.${pkgs.system}.sf-mono
-    inputs.apple-fonts.packages.${pkgs.system}.ny
+    inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-pro
+    inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-mono
+    inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.ny
   ];
 
   fonts.fontconfig = {
