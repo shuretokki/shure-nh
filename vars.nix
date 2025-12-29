@@ -8,9 +8,9 @@
   # ─── Default Applications ───────────────────────────────────
   browser = "zen";              # zen, firefox, chromium
   terminal = "warp-terminal";   # warp-terminal, kitty, alacritty
-  editor = "code";              # code, nvim, helix
-  fileManager = "nautilus";     # nautilus, thunar
-  musicPlayer = "spotify";      # spotify
+  editor = "code";              # code, nvim
+  fileManager = "nautilus";     # nautilus
+  musicPlayer = "spotify";      # spotify, youtube-music
 
   # ─── Appearance ─────────────────────────────────────────────
   wallpaperDir = "wallpaper";
