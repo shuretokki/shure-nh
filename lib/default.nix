@@ -30,7 +30,6 @@ in
           extraSpecialArgs = { inherit inputs; vars = mergedVars; };
           sharedModules = [
             inputs.vicinae.homeManagerModules.default
-            inputs.stylix.homeManagerModules.stylix
           ];
           users.${username} = import ../users/${username}/home.nix;
           backupFileExtension = "backup";
