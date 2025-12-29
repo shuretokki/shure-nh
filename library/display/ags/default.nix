@@ -13,7 +13,7 @@
       inputs.ags.packages.${stdenv.hostPlatform.system}.wireplumber
       inputs.ags.packages.${stdenv.hostPlatform.system}.tray
       gtksourceview
-      webkitgtk_6
+      webkitgtk_6_0
       accountsservice
     ];
   };
