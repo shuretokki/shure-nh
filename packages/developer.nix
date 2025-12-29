@@ -7,17 +7,6 @@
     nil
     nixpkgs-fmt
     direnv
-    nix-direnv
+    alejandra
   ];
-
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
-
-  environment.variables = {
-    EDITOR = "code --wait";
-    VISUAL = "code --wait";
-  };
-
-  programs.bash.shellAliases = {
-  };
 }
