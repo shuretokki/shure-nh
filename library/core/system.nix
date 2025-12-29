@@ -1,4 +1,7 @@
-{ config, pkgs, vars, ... }: {
+{ config, pkgs, vars, inputs, ... }: {
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
