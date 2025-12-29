@@ -1,0 +1,35 @@
+{ config, pkgs, vars, ... }: {
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = ["nix-command" "flakes"];
+    substituters = [
+      "https://hyprland.cachix.org"
+      "https://vicinae.cachix.org"
+    ];
+    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+    ];
+  };
+
+  networking.hostName = vars.hostname;
+  console.keyMap = "us";
+
+  programs.dconf.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  programs.ydotool.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
+}
