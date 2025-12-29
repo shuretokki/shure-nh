@@ -24,7 +24,7 @@ in {
   home-manager.users.${vars.username} = {
     imports = [
       ./wp
-      ./ags
+      ./waybar
       ./swayosd
       ./hyprlock
       ./hypridle
