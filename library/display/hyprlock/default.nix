@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  theme = import ../themes/current.nix;
+  colors = config.lib.stylix.colors;
 in {
   programs.hyprlock = {
     enable = true;
@@ -14,7 +14,7 @@ in {
         {
           monitor = "";
           path = "screenshot";
-          color = "rgba(${theme.colors.bg}ff)";
+          color = "rgba(${colors.base00}ff)";
           blur_passes = 3;
         }
       ];
@@ -27,9 +27,9 @@ in {
           dots_size = 0.33;
           dots_spacing = 0.15;
           dots_center = true;
-          outer_color = "rgba(${theme.colors.active_border}ff)";
-          inner_color = "rgba(${theme.colors.bg}ff)";
-          font_color = "rgba(${theme.colors.fg}ff)";
+          outer_color = "rgba(${colors.base0D}ff)";
+          inner_color = "rgba(${colors.base00}ff)";
+          font_color = "rgba(${colors.base05}ff)";
           fade_on_empty = false;
           placeholder_text = "<i>Password...</i>";
           hide_input = false;
@@ -43,7 +43,7 @@ in {
         {
           monitor = "";
           text = "$TIME";
-          color = "rgba(${theme.colors.fg}ff)";
+          color = "rgba(${colors.base05}ff)";
           font_size = 64;
           font_family = "SF Pro Rounded";
           position = "0, 80";

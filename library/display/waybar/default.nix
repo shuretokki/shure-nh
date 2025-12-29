@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
-  theme = import ../themes/current.nix;
+  colors = config.lib.stylix.colors;
 in {
   programs.waybar = {
     enable = true;
@@ -115,11 +115,11 @@ in {
 
       window#waybar {
           background-color: transparent;
-          color: #${theme.colors.fg};
+          color: #${colors.base05};
       }
 
       #workspaces {
-          background-color: #${theme.colors.bg};
+          background-color: #${colors.base00};
           margin-top: 5px;
           margin-bottom: 5px;
           margin-left: 5px;
@@ -128,18 +128,18 @@ in {
 
       #workspaces button {
           padding: 0px 8px;
-          color: #${theme.colors.fg};
+          color: #${colors.base05};
           border-radius: 0px;
       }
 
       #workspaces button.active {
-          background-color: #${theme.colors.active_border};
-          color: #${theme.colors.bg};
+          background-color: #${colors.base0D};
+          color: #${colors.base00};
       }
 
       #workspaces button.urgent {
-          background-color: #${theme.colors.red};
-          color: #${theme.colors.bg};
+          background-color: #${colors.base08};
+          color: #${colors.base00};
       }
 
       #network,
@@ -148,7 +148,7 @@ in {
       #battery,
       #clock,
       #mpris {
-          background-color: #${theme.colors.bg};
+          background-color: #${colors.base00};
           border-radius: 0px;
           padding: 0px 4px;
           margin-top: 5px;
@@ -166,13 +166,13 @@ in {
 
       #battery.charging,
       #battery.plugged {
-          color: #${theme.colors.green};
-          border-color: #${theme.colors.green};
+          color: #${colors.base0B};
+          border-color: #${colors.base0B};
       }
 
       #network.disconnected {
-          color: #${theme.colors.red};
-          border-color: #${theme.colors.red};
+          color: #${colors.base08};
+          border-color: #${colors.base08};
       }
 
       #custom-expand-icon {
@@ -181,12 +181,12 @@ in {
 
       tooltip {
           padding: 2px;
-          background-color: #${theme.colors.bg};
-          border: 1px solid #${theme.colors.active_border};
+          background-color: #${colors.base00};
+          border: 1px solid #${colors.base0D};
       }
 
       tooltip label {
-          color: #${theme.colors.fg};
+          color: #${colors.base05};
       }
 
       #custom-update {
@@ -204,7 +204,7 @@ in {
       }
 
       #custom-screenrecording-indicator.active {
-          color: #${theme.colors.red};
+          color: #${colors.base08};
       }
     '';
   };
