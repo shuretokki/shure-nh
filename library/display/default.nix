@@ -2,6 +2,8 @@
 let
   hyprland-config = import ./hyprland { inherit config pkgs vars; };
 in {
+  imports = [ ./stylix.nix ];
+
   programs.hyprland = {
     enable = true;
     withUWSM = true;
@@ -23,7 +25,6 @@ in {
 
   home-manager.users.${vars.username} = {
     imports = [
-      ./stylix.nix
       ./waybar
       ./swayosd
       ./hyprlock
