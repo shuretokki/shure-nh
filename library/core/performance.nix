@@ -1,9 +1,9 @@
 { config, pkgs, ... }: {
   zramSwap = {
     enable = true;
-    algorithm = "zstd";
+    # algorithm = "zstd";
     memoryPercent = 50;
-    memoryMax = 8192; # 8GB cap
+    memoryMax = 8192;
     priority = 100;
   };
 
