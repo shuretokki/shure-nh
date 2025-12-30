@@ -33,11 +33,11 @@ in {
     };
 
     targets.grub.enable = false;
-    targets.hyprland.enable = lib.mkDefault false;
   };
 
   home-manager.users.${vars.username}.stylix.targets = {
     vscode.enable = lib.mkDefault false;
+    hyprpaper.enable = lib.mkDefault false;
     zen-browser.profileNames = [ "default" ];
   };
 }
