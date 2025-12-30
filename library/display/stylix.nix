@@ -1,18 +1,20 @@
-{ lib, pkgs, vars, ... }: {
+# https://stylix.danth.me/
+{ lib, pkgs, vars, ... }:
+let
+  themeData = import (./themes + "/${vars.theme}.nix") { inherit pkgs; };
+in {
   stylix = {
     enable = true;
     autoEnable = true;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-
-    image = ./wallpapers/gruvbox_scenery.png;
-
-    polarity = "dark";
+    base16Scheme = themeData.scheme;
+    image = themeData.wallpaper;
+    polarity = themeData.polarity;
 
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = lib.mkDefault vars.fontMono;
+        name = lib.mkForce vars.fontMono;
       };
       sansSerif = {
         package = pkgs.inter;
@@ -29,7 +31,13 @@
       name = lib.mkDefault vars.cursorTheme;
       size = lib.mkDefault vars.cursorSize;
     };
+
+    targets.grub.enable = false;
+    targets.hyprland.enable = lib.mkDefault false;
   };
 
-  home-manager.users.${vars.username}.stylix.targets.zen-browser.profileNames = [ "default" ];
+  home-manager.users.${vars.username}.stylix.targets = {
+    vscode.enable = lib.mkDefault false;
+    zen-browser.profileNames = [ "default" ];
+  };
 }
