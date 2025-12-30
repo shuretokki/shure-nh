@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 let
   colors = config.lib.stylix.colors;
 in {
@@ -32,7 +32,7 @@ in {
         "custom/omarchy" = {
           "format" = "<span font='omarchy'>\ue900</span>";
           "on-click" = "omarchy-menu";
-          "on-click-right" = "xdg-terminal-exec";
+          "on-click-right" = "${vars.terminal}";
           "tooltip-format" = "Omarchy Menu\n\nSuper + Alt + Space";
         };
 
@@ -48,13 +48,13 @@ in {
         "cpu" = {
           "interval" = 5;
           "format" = "󰍛";
-          "on-click" = "xdg-terminal-exec btop";
+          "on-click" = "${vars.terminal} -e btop";
         };
 
         "memory" = {
           "interval" = 5;
           "format" = "󰘚";
-          "on-click" = "xdg-terminal-exec btop";
+          "on-click" = "${vars.terminal} -e btop";
         };
 
         "network" = {
