@@ -21,5 +21,11 @@
 
   timezone = "Asia/Jakarta";
   locale = "en_US.UTF-8";
+
+  features = {
+    cli = true;
+    desktop = true;
+    gaming = false;
+  };
 }
 
