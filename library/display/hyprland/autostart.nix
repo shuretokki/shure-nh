@@ -14,6 +14,7 @@
     "hyprsunset"
 
     "swayosd-server"
+    "swww-daemon"
     "fcitx5 -d"
   ];
 }
