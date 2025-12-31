@@ -8,7 +8,6 @@ result
 secrets.nix
 
 .vscode/
-.agent
 *.swp
 .github/instructions/
 secrets.nix
