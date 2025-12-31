@@ -1,4 +1,13 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, vars, ... }:
+let
+  themeDir = ./themes + "/${vars.theme}";
+  themeSddm = if builtins.pathExists (themeDir + "/sddm.nix")
+              then import (themeDir + "/sddm.nix") { inherit pkgs; }
+              else {};
+
+  font = themeSddm.font or "SF Pro Rounded";
+  background = themeSddm.background or null;
+in {
   services.displayManager.sddm = {
     enable = true;
     package = pkgs.kdePackages.sddm;
@@ -28,8 +37,7 @@
 
   environment.systemPackages = with pkgs; [
     (import ./sddm.nix {
-      inherit pkgs;
-      background = null;
+      inherit pkgs font background;
     })
   ];
 }
