@@ -69,6 +69,12 @@
             postProduction = "no";        # no|grayscale|grayscaleblur|grayscaleheavyblur|lightblur|lightblurdarken|heavyblur|heavyblurdarken|negate
           };
         };
+        "@sovereign/hypr-keybinds-0" = {
+          favorite = true;
+          preferences = {
+            keybindsConfigPath = "${config.home.homeDirectory}/.config/hypr/hyprland.conf";
+          };
+        };
         "@rastsislaux/pulseaudio-0" = {
           favorite = true;
           preferences = {
