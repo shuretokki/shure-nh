@@ -127,7 +127,6 @@ in {
     };
 
     additionalCss = ''
-      /* SharkBlue inspired tweaks synced with Stylix */
       .main-nowPlayingWidget-coverArt {
         border-radius: 8px;
       }
