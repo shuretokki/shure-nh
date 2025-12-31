@@ -1,4 +1,3 @@
-```nix
 # https://stylix.danth.me/
 { lib, pkgs, vars, ... }:
 let
