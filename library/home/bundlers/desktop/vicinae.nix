@@ -1,7 +1,7 @@
 # https://github.com/vicinaehq/vicinae
 { config, lib, pkgs, vars, inputs, ... }:
 let
-  settingsJson = builtins.toJSON {
+  settingsJsonContent = builtins.toJSON {
     close_on_focus_loss = true;
     consider_preedit = true;
     pop_to_root_on_close = true;
@@ -29,14 +29,7 @@ let
     extensions = {};
   };
 
-  extensionPrefs = {
-    "@sovereign/store.vicinae.awww-switcher:data" = {
-      wallpaperPath = "${config.home.homeDirectory}/${vars.wallpaperDir}";
-      gridRows = "4";
-      transitionType = "random";
-      transitionDuration = "1";
-    };
-  };
+  settingsFile = pkgs.writeText "vicinae-settings.json" settingsJsonContent;
 in {
   services.vicinae = {
     enable = true;
@@ -46,17 +39,26 @@ in {
         USE_LAYER_SHELL = 1;
       };
     };
-    settings = {};
   };
 
-  xdg.configFile."vicinae/settings.json" = lib.mkForce {
-    text = settingsJson;
-  };
+  xdg.configFile."vicinae/settings.json".enable = lib.mkForce false;
 
   home.packages = with pkgs; [ sqlite ];
 
-  home.activation.vicinaePreferences = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.vicinaeSetup = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    VICINAE_CONFIG_DIR="$HOME/.config/vicinae"
+    VICINAE_SETTINGS="$VICINAE_CONFIG_DIR/settings.json"
     VICINAE_DB="$HOME/.local/share/vicinae/vicinae.db"
+
+    mkdir -p "$VICINAE_CONFIG_DIR"
+    if [ -L "$VICINAE_SETTINGS" ]; then
+      rm "$VICINAE_SETTINGS"
+    fi
+    if [ ! -f "$VICINAE_SETTINGS" ]; then
+      cp "${settingsFile}" "$VICINAE_SETTINGS"
+      chmod 644 "$VICINAE_SETTINGS"
+      echo "Created writable Vicinae settings.json"
+    fi
 
     if [ -f "$VICINAE_DB" ]; then
       ${pkgs.sqlite}/bin/sqlite3 "$VICINAE_DB" << 'EOF'
@@ -67,7 +69,7 @@ in {
           ('@sovereign/store.vicinae.awww-switcher:data', 1, 'transitionType', 'random'),
           ('@sovereign/store.vicinae.awww-switcher:data', 1, 'transitionDuration', '1');
 EOF
-      echo "Injected Vicinae extension preferences"
+      echo "Injected Vicinae extension preferences into database"
     fi
   '';
 }
