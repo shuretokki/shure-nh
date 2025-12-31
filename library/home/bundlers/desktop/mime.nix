@@ -2,11 +2,11 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = lib.mkDefault "${vars.browser}.desktop";
-      "x-scheme-handler/http" = lib.mkDefault "${vars.browser}.desktop";
-      "x-scheme-handler/https" = lib.mkDefault "${vars.browser}.desktop";
-      "x-scheme-handler/about" = lib.mkDefault "${vars.browser}.desktop";
-      "x-scheme-handler/unknown" = lib.mkDefault "${vars.browser}.desktop";
+      "text/html" = lib.mkForce "${vars.browser}.desktop";
+      "x-scheme-handler/http" = lib.mkForce "${vars.browser}.desktop";
+      "x-scheme-handler/https" = lib.mkForce "${vars.browser}.desktop";
+      "x-scheme-handler/about" = lib.mkForce "${vars.browser}.desktop";
+      "x-scheme-handler/unknown" = lib.mkForce "${vars.browser}.desktop";
     };
   };
 }
