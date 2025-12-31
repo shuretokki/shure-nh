@@ -37,10 +37,7 @@
         # Nix [ Packages, Options, Home Manager ]
         "${super} ${shift}, P, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/knoopx/nix/packages"
         "${super} ${shift}, O, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/knoopx/nix/options"
-        "${super} ${shift}, I, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/knoopx/nix/home-manager"
-
-        # Player Pilot
-        "${super}, Q, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/dagimg-dot/player-pilot/player-pilot"
+        "${super} ${shift}, I, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/knoopx/nix/home-manager-options"
 
         # SSH
         "${super}, Y, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/leiserfg/ssh/ssh"
