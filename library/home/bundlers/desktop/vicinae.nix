@@ -51,8 +51,6 @@
         opacity = 0.88;
       };
 
-      # Configure extension preferences using the official providers format
-      # Name format: @author/extension-name-0 (for declaratively installed extensions)
       providers = {
         "@sovereign/awww-switcher-0" = {
           preferences = {
