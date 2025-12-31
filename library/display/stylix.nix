@@ -1,3 +1,4 @@
+```nix
 # https://stylix.danth.me/
 { lib, pkgs, vars, ... }:
 let
@@ -9,8 +10,7 @@ in {
     autoEnable = true;
 
     base16Scheme = themeData.scheme;
-
-    image = themeDir + "/wallpapers/" + themeData.wallpaperDefault;
+    image = themeDir + "/wallpapers/${themeData.wallpaperDefault}";
     polarity = themeData.polarity;
 
     fonts = {
