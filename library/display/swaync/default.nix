@@ -12,5 +12,11 @@
             notification-body-image-height = 100;
             notification-body-image-width = 200;
         };
+        style = ''
+          .notification-row,
+          .control-center {
+            border: none;
+          }
+        '';
     };
 }
