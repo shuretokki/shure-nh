@@ -4,6 +4,7 @@
   polarity = "dark";
 
   wallpaperDir = "gruvbox";  # ~/Wallpapers/gruvbox/
+  wallpaperDefault = "gruvbox_scenery.png";
 
   fonts = {
     mono = "JetBrainsMono Nerd Font";
