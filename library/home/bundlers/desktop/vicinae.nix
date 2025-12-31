@@ -46,7 +46,7 @@ in {
         USE_LAYER_SHELL = 1;
       };
     };
-    settings = null;
+    settings = {};
   };
 
   home.file.".config/vicinae/settings.json" = {
