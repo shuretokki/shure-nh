@@ -12,6 +12,12 @@ in {
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
+  programs.uwsm.waylandCompositors.hyprland = {
+    binPath = lib.mkForce "${pkgs.hyprland}/bin/start-hyprland";
+    prettyName = "Hyprland";
+    comment = "Hyprland managed by UWSM";
+  };
+
   environment.systemPackages = with pkgs; [
     swaynotificationcenter
     hyprshot
