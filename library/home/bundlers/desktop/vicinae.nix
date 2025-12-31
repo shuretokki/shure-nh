@@ -10,20 +10,6 @@
       };
     };
 
-    extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
-      awww-switcher
-      pulseaudio
-      power-profile
-      wifi-commander
-      bluetooth
-      process-manager
-      fuzzy-files
-      nix
-      player-pilot
-      ssh
-      hypr-keybinds
-    ];
-
     settings = {
       close_on_focus_loss = true;
       consider_preedit = true;
