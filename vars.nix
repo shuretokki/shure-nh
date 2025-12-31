@@ -11,7 +11,7 @@
   musicPlayer = "spotify";      # spotify, youtube-music
 
   theme = "gruvbox";            # gruvbox, catppuccin, custom
-  wallpaperDir = "wallpaper";
+  wallpaperDir = "Wallpapers";
   cursorTheme = "macOS";
   cursorSize = 24;
 
