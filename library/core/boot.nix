@@ -1,14 +1,10 @@
 { lib, pkgs, vars, ... }:
 let
-  # Import Theme Config using relative path since this is in core/
-  # Ideally we should use a consistent method, but assuming library folder structure:
-  # library/core/boot.nix -> ../display/themes
   themeDir = ../display/themes + "/${vars.theme}";
   themeGrub = if builtins.pathExists (themeDir + "/grub.nix")
               then import (themeDir + "/grub.nix") { inherit pkgs; }
               else {};
 
-  # Fallback Default Theme
   defaultTheme = pkgs.stdenv.mkDerivation {
         pname = "wuthering-grub-theme";
         version = "1.0";
