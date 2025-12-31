@@ -1,4 +1,4 @@
-{ lib, config, pkgs, inputs, vars, ... }:
+{ config, pkgs, inputs, vars, ... }:
 let
   hyprland-config = import ./hyprland { inherit config pkgs vars; };
 in {
@@ -12,11 +12,11 @@ in {
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
-  programs.uwsm.waylandCompositors.hyprland = {
-    binPath = lib.mkForce "${pkgs.hyprland}/bin/start-hyprland";
-    prettyName = "Hyprland";
-    comment = "Hyprland managed by UWSM";
-  };
+  # programs.uwsm.waylandCompositors.hyprland = {
+  #   binPath = lib.mkForce "${pkgs.hyprland}/bin/start-hyprland";
+  #   prettyName = "Hyprland";
+  #   comment = "Hyprland managed by UWSM";
+  # };
 
   environment.systemPackages = with pkgs; [
     swaynotificationcenter
