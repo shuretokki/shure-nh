@@ -1,12 +1,93 @@
-# Music Applications
 # https://github.com/Gerg-L/spicetify-nix
+# https://github.com/h-banii/youtube-music-nix
 { lib, pkgs, config, inputs, ... }:
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   colors = config.lib.stylix.colors.withHashtag;
 in {
-  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.default
+    inputs.youtube-music.homeManagerModules.default
+  ];
 
+  # YouTube Music
+  # https://h-banii.github.io/youtube-music-nix/pages/home-manager/
+  programs.youtube-music = {
+    enable = true;
+    options.themes = [ "gruvbox-stylix" ];
+
+    # Plugins - Uncomment to enable
+    # Full list: https://github.com/th-ch/youtube-music/wiki/Plugins
+    plugins = {
+        # adblocker = { enable = true; };
+        # album-actions = { enable = true; };
+        # album-color-theme = { enable = true; };
+        # ambient-mode = { enable = true; };
+        # amuse = { enable = true; };
+        # api-server = { enable = true; };
+        # audio-compressor = { enable = true; };
+        # auth-proxy-adapter = { enable = true; };
+        # blur-nav-bar = { enable = true; };
+        # bypass-age-restrictions = { enable = true; };
+        # captions-selector = { enable = true; };
+        # compact-sidebar = { enable = true; };
+        # crossfade = { enable = true; };
+        # custom-output-device = { enable = true; };
+        # disable-autoplay = { enable = true; };
+        # discord = { enable = true; };  # Rich Presence
+        # downloader = { enable = true; };
+        # equalizer = { enable = true; };
+        # exponential-volume = { enable = true; };
+        # in-app-menu = { enable = true; };
+        # lumiastream = { enable = true; };
+        # lyrics-genius = { enable = true; };
+        # music-together = { enable = true; };
+        # navigation = { enable = true; };
+        # no-google-login = { enable = true; };
+        # notifications = { enable = true; };
+        # performance-improvement = { enable = true; };
+        # picture-in-picture = { enable = true; };
+        # playback-speed = { enable = true; };
+        # precise-volume = { enable = true; };
+        # quality-changer = { enable = true; };
+        # scrobbler = { enable = true; };  # Last.fm
+        # shortcuts = { enable = true; };
+        # skip-disliked-songs = { enable = true; };
+        # skip-silences = { enable = true; };
+        # sponsorblock = { enable = true; };
+        # synced-lyrics = { enable = true; };
+        # taskbar-mediacontrol = { enable = true; };
+        # touchbar = { enable = true; };
+        # transparent-player = { enable = true; };
+        # tuna-obs = { enable = true; };
+        # unobtrusive-player = { enable = true; };
+        # video-toggle = { enable = true; };
+        # visualizer = { enable = true; };
+    };
+  };
+
+  xdg.configFile."youtube-music/themes/gruvbox-stylix.css".text = ''
+    /* Gruvbox Stylix Theme for YouTube Music */
+    :root {
+      --ytmusic-color-black: ${colors.base00};
+      --ytmusic-color-white: ${colors.base05};
+      --ytmusic-brand-background-solid: ${colors.base00};
+      --ytmusic-general-background-a: ${colors.base00};
+      --ytmusic-general-background-c: ${colors.base01};
+      --ytmusic-text-primary: ${colors.base05};
+      --ytmusic-text-secondary: ${colors.base04};
+      --ytmusic-static-brand-red: ${colors.base08};
+      --ytmusic-overlay-background-brand: ${colors.base08};
+      --ytmusic-menu-item-hover-background-color: ${colors.base02};
+    }
+    body { background-color: ${colors.base00} !important; }
+    ytmusic-nav-bar { background-color: ${colors.base01} !important; }
+    ytmusic-player-bar { background-color: ${colors.base01} !important; }
+  '';
+
+
+  # Spicetify
+  # https://gerg-l.github.io/spicetify-nix
   programs.spicetify = {
     enable = lib.mkDefault true;
 
@@ -32,6 +113,7 @@ in {
     };
 
     additonalCss = ''
+      /* SharkBlue inspired tweaks synced with Stylix */
       .main-nowPlayingWidget-coverArt {
         border-radius: 8px;
       }
@@ -108,7 +190,6 @@ in {
   };
 
   home.packages = with pkgs; [
-    youtube-music
     (writeShellScriptBin "spotify-th" ''
       exec env -u QT_QPA_PLATFORMTHEME ${config.programs.spicetify.spicetifyPackage}/bin/spotify --no-zygote "$@"
     '')
