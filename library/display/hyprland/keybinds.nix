@@ -28,6 +28,9 @@
         # Wallpaper Grid (AWWW Switcher)
         "${super}, W, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/sovereign/awww-switcher/wpgrid"
 
+        # Pulseaudio
+        "${super}, U, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/rastsislaux/pulseaudio/pulseaudio"
+
         # Closing Windows
         "${alt} ${ctrl} ${shift}, W, killactive"
 
