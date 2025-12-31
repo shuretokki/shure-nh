@@ -1,3 +1,4 @@
+# Music Applications
 # https://github.com/Gerg-L/spicetify-nix
 # https://github.com/h-banii/youtube-music-nix
 { lib, pkgs, config, inputs, ... }:
@@ -10,11 +11,14 @@ in {
     inputs.youtube-music.homeManagerModules.default
   ];
 
-  # YouTube Music
-  # https://h-banii.github.io/youtube-music-nix/pages/home-manager/
+  # ══════════════════════════════════════════════════════════════════════════
+  # YouTube Music (Declarative)
+  # Docs: https://h-banii.github.io/youtube-music-nix/pages/home-manager/
+  # ══════════════════════════════════════════════════════════════════════════
   programs.youtube-music = {
     enable = true;
-    options.themes = [ "gruvbox-stylix" ];
+    # We use a custom local theme defined below
+    options.themes = [ "stylix-custom" ];
 
     # Plugins - Uncomment to enable
     # Full list: https://github.com/th-ch/youtube-music/wiki/Plugins
@@ -66,8 +70,7 @@ in {
     };
   };
 
-  xdg.configFile."youtube-music/themes/gruvbox-stylix.css".text = ''
-    /* Gruvbox Stylix Theme for YouTube Music */
+  xdg.configFile."youtube-music/themes/stylix-custom.css".text = ''
     :root {
       --ytmusic-color-black: ${colors.base00};
       --ytmusic-color-white: ${colors.base05};
@@ -79,10 +82,27 @@ in {
       --ytmusic-static-brand-red: ${colors.base08};
       --ytmusic-overlay-background-brand: ${colors.base08};
       --ytmusic-menu-item-hover-background-color: ${colors.base02};
+
+      --font-family: "${config.stylix.fonts.sansSerif.name}";
+      --border-radius: 8px;
     }
-    body { background-color: ${colors.base00} !important; }
+
+    body {
+      background-color: ${colors.base00} !important;
+      font-family: var(--font-family) !important;
+    }
+
+    img, .image, .song-media-controls {
+      border-radius: var(--border-radius) !important;
+    }
+
     ytmusic-nav-bar { background-color: ${colors.base01} !important; }
     ytmusic-player-bar { background-color: ${colors.base01} !important; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: ${colors.base00}; }
+    ::-webkit-scrollbar-thumb { background: ${colors.base03}; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: ${colors.base04}; }
   '';
 
 
