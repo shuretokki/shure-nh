@@ -111,12 +111,6 @@
         # Toggle Gaps
         "${super}, G, exec, toggle-gaps"
 
-        # Toggle Wallpaper Picker
-        "${super}, W, exec, ags -t wallpaper-picker"
-
-        # Toggle AGS Bar
-        "${super} ${shift}, SPACE, exec, ags -t bar-0"
-
         # Lock Screen
         "${super}, L, exec, hyprlock"
     ]
