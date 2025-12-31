@@ -37,15 +37,17 @@ in {
     targets.grub.enable = false;
   };
 
-  # auto-update wallpaper symlink on rebuild
-  home.activation.linkWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    mkdir -p "${config.home.homeDirectory}/Wallpapers"
-    ln -sfn "${themeDir}/wallpapers" "${config.home.homeDirectory}/Wallpapers/current"
-  '';
+  home-manager.users.${vars.username} = { config, ... }: {
+    stylix.targets = {
+      vscode.enable = lib.mkDefault false;
+      hyprpaper.enable = lib.mkDefault false;
+      zen-browser.profileNames = [ "default" ];
+    };
 
-  home-manager.users.${vars.username}.stylix.targets = {
-    vscode.enable = lib.mkDefault false;
-    hyprpaper.enable = lib.mkDefault false;
-    zen-browser.profileNames = [ "default" ];
+    # auto-update wallpaper symlink on rebuild
+    home.activation.linkWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p "${config.home.homeDirectory}/Wallpapers"
+      ln -sfn "${themeDir}/wallpapers" "${config.home.homeDirectory}/Wallpapers/current"
+    '';
   };
 }
