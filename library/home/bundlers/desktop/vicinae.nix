@@ -1,4 +1,6 @@
-{ config, pkgs, inputs, ... }: {
+# Vicinae Launcher Configuration
+# Source: https://github.com/vicinaehq/vicinae
+{ config, lib, pkgs, vars, inputs, ... }: {
   services.vicinae = {
     enable = true;
     systemd = {
@@ -16,7 +18,7 @@
       font = {
         normal = {
           size = 10.5;
-          normal = "SF Pro Rounded";
+          normal = vars.fontSans;
         };
       };
       theme = {
@@ -32,6 +34,28 @@
       launcher_window = {
         opacity = 0.88;
       };
+      extensions = {
+        awww-switcher = {
+          wallpaper_path = "${config.home.homeDirectory}/${vars.wallpaperDir}";
+          grid_rows = 4;
+          transition_type = "random";
+          transition_duration = 1;
+        };
+        pulseaudio = {
+          show_volume = true;
+        };
+        power-profile = {};
+        wifi-commander = {};
+        bluetooth = {};
+        systemd = {};
+        process-manager = {};
+        fuzzy-files = {};
+        nix = {};
+        player-pilot = {};
+        ssh = {};
+        hypr-keybinds = {};
+      };
     };
   };
 }
+
