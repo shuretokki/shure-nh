@@ -26,7 +26,7 @@
         "${alt}, SPACE, exec, ${pkgs.vicinae}/bin/vicinae show"
 
         # Wallpaper Grid (AWWW Switcher)
-        "${super}, W, exec, ${pkgs.vicinae}/bin/vicinae run @sovereign/awww-switcher-0 wpgrid"
+        "${super}, W, exec, ${pkgs.vicinae}/bin/vicinae vicinae://extensions/sovereign/awww-switcher-0/wpgrid"
 
         # Closing Windows
         "${alt} ${ctrl} ${shift}, W, killactive"

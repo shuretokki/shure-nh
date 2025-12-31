@@ -54,20 +54,20 @@
       providers = {
         "@sovereign/awww-switcher-0" = {
           preferences = {
+            # Required ..
             wallpaperPath = "${config.home.homeDirectory}/${vars.wallpaperDir}";
-            gridRows = "4";
-            transitionType = "random";
-            transitionDuration = "1";
+            colorGenTool = "matugen";  # none|matugen|pywal|wpgtk|schemer2|colorz|haishoku|wallust
+            # Customization ..
+            gridRows = "4";  # 3|4|5|6
+            showImageDetails = true;
+            transitionType = "random";  # none|simple|fade|left|right|top|bottom|wipe|wave|grow|center|any|outer|random
+            transitionDuration = "2";   # 8|5|3|2|1 (seconds)
+            transitionStep = "90";      # 1|45|90|120|200|255 (color steps)
+            transitionFPS = "60";
+            toggleVicinaeSetting = true;  # Close vicinae after selecting wallpaper
+            postProduction = "no";        # no|grayscale|grayscaleblur|grayscaleheavyblur|lightblur|lightblurdarken|heavyblur|heavyblurdarken|negate
           };
         };
-        # "@sovereign/store.vicinae.awww-switcher" = {
-        #   preferences = {
-        #     wallpaperPath = "${config.home.homeDirectory}/${vars.wallpaperDir}";
-        #     gridRows = "4";
-        #     transitionType = "random";
-        #     transitionDuration = "1";
-        #   };
-        # };
         "@rastsislaux/pulseaudio-0" = {
           preferences = {
             show_volume = true;
