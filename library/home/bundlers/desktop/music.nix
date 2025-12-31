@@ -126,8 +126,11 @@ in {
       misc = colors.base04;
     };
 
-    additionalCss = ''
+    customCSS = ''
       .main-nowPlayingWidget-coverArt {
+        border-radius: 8px;
+      }
+      .main-trackList-rowImage {
         border-radius: 8px;
       }
     '';
