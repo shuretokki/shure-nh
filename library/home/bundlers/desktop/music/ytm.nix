@@ -33,8 +33,7 @@ let
     }
   '';
 
-  # Combine overrides with the actual CSS file
-  ytmTheme = pkgs.writeText "ytm-custom.css" (colorOverrides + builtins.readFile ./ytm.css);
+  ytmTheme = pkgs.writeText "ytm-stylix.css" (colorOverrides + builtins.readFile ./ytm.css);
 in {
   imports = [ inputs.youtube-music.homeManagerModules.default ];
 

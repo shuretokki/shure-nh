@@ -50,7 +50,9 @@ in {
       notification = colorsRaw.base01;  # notification background
       notification-error = colorsRaw.base08;
 
-      misc = colorsRaw.base04;  # miscellaneous elements
+      # small icons, separators, dividers, hover highlights, and other
+      # ui elements not covered by specific color categories
+      misc = colorsRaw.base04;
     };
 
     # Extensions
@@ -78,13 +80,12 @@ in {
           background: none;
           opacity: 0;
           z-index: 12;
-          top: 2px;
+          top: 16px;
           transition: opacity 0.3s ease-in-out;
         }
         #global-nav-bar:hover {
           background: ${colorsRaw.base00};
           z-index: 12;
-          top: 16px;
           opacity: 1;
         }
         .Root__now-playing-bar {
