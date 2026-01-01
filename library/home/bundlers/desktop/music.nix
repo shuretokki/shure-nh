@@ -140,16 +140,16 @@ in {
     enable = lib.mkDefault true;
 
     theme = {
-      name = "user";
-      src = pkgs.writeTextDir "color.ini" "";
+      name = "stylix";
+      src = ./.;  # containing color.ini and user.css
       injectCss = true;
       replaceColors = true;
       overwriteAssets = false;
       sidebarConfig = false;
-      additionalCss = user.css;
+      additionalCss = builtins.readFile ./user.css;
     };
 
-    colorScheme = lib.mkForce "custom";
+    colorScheme = lib.mkForce "Gruvbox";
     customColorScheme = {
       text = colors.base05;
       subtext = colors.base04;
