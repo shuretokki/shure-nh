@@ -36,7 +36,7 @@ in {
     targets.grub.enable = false;
   };
 
-  home-manager.users.${vars.username} = { config, ... }: {
+  home-manager.users.${vars.username} = { config, lib, ... }: {
     stylix.targets = {
       vscode.enable = lib.mkDefault false;
       hyprpaper.enable = lib.mkDefault false;
