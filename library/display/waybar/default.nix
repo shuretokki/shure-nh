@@ -1,28 +1,16 @@
-{ config, pkgs, vars, ... }:
+{ config, pkgs, vars, lib, ... }:
 let
   colors = config.lib.stylix.colors;
-  themeDir = ../themes + "/${vars.theme}";
-  themeWaybar = if builtins.pathExists (themeDir + "/waybar.nix")
-                then import (themeDir + "/waybar.nix") { inherit colors; }
-                else {};
 
-  borderRadius = themeWaybar.borderRadius or "0px";
-  barHeight = themeWaybar.barHeight or 26;
-  moduleSpacing = themeWaybar.moduleSpacing or 0;
-in {
-  programs.waybar = {
-    enable = true;
-    systemd.enable = true;
-    settings = {
+  # base config can be here, or fully driven by theme.
+  # using mkMerge to allow theme to override/extend settings.
+  baseSettings = {
       mainBar = {
         "reload_style_on_change" = true;
         "layer" = "top";
         "position" = "top";
-        "spacing" = moduleSpacing;
-        "height" = barHeight;
+        "height" = 26;
         "margin-top" = 4;
-        "margin-left" = 0;
-        "margin-right" = 0;
         "modules-left" = [ "hyprland/workspaces" ];
         "modules-center" = [ "mpris" ];
         "modules-right" = [ "network" "pulseaudio" "battery" "clock" ];
@@ -32,9 +20,7 @@ in {
           "active-only" = false;
           "all-outputs" = true;
           "format" = "{name}";
-          "persistent-workspaces" = {
-            "*" = 5;
-          };
+          "persistent-workspaces" = { "*" = 5; };
         };
 
         "cpu" = {
@@ -56,17 +42,13 @@ in {
           "tooltip-format" = "{essid} ({signalStrength}%)";
           "on-click" = "nm-connection-editor";
         };
-
         "pulseaudio" = {
           "format" = "{icon}";
           "format-muted" = "󰝟";
-          "format-icons" = {
-            "default" = [ "󰕿" "󰖀" "󰕾" ];
-          };
+          "format-icons" = { "default" = [ "󰕿" "󰖀" "󰕾" ]; };
           "on-click" = "pavucontrol";
           "tooltip-format" = "{volume}%";
         };
-
         "battery" = {
           "states" = {
             "warning" = 30;
@@ -78,26 +60,26 @@ in {
           "format-icons" = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰁿" "󰂁" "󰂂" "󰁹" ];
           "tooltip-format" = "{capacity}%";
         };
-
         "clock" = {
           "format" = "{:%H:%M}";
           "tooltip-format" = "{:%A, %B %d, %Y}";
         };
-
         "mpris" = {
           "format" = "{player_icon} {title} - {artist}";
           "format-paused" = "{status_icon} <i>{title} - {artist}</i>";
-          "player-icons" = {
-            "default" = "󰐊";
-            "spotify" = "";
-          };
-          "status-icons" = {
-            "paused" = "󰏤";
-          };
+          "player-icons" = { "default" = "󰐊"; "spotify" = ""; };
+          "status-icons" = { "paused" = "󰏤"; };
           "max-length" = 40;
         };
       };
-    };
+  };
+in {
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
+    # merge base settings with theme-specific config
+    settings = lib.mkMerge [ baseSettings config.theme.waybar.config ];
+
     style = ''
       * {
           font-family: "${config.stylix.fonts.monospace.name}";
@@ -115,13 +97,13 @@ in {
           margin-top: 5px;
           margin-bottom: 5px;
           margin-left: 5px;
-          border-radius: ${borderRadius};
+          border-radius: 0px;
       }
 
       #workspaces button {
           padding: 0px 8px;
           color: #${colors.base05};
-          border-radius: ${borderRadius};
+          border-radius: 0px;
       }
 
       #workspaces button.active {
@@ -141,66 +123,26 @@ in {
       #clock,
       #mpris {
           background-color: #${colors.base00};
-          border-radius: ${borderRadius};
           padding: 0px 4px;
           margin-top: 5px;
           margin-bottom: 5px;
           margin-right: 5px;
       }
 
-      #mpris {
-          padding: 0px 32px;
-      }
+      #mpris { padding: 0px 32px; }
+      #clock { font-weight: 700; }
 
-      #clock {
-          font-weight: 700;
-      }
-
-      #battery.charging,
-      #battery.plugged {
-          color: #${colors.base0B};
-          border-color: #${colors.base0B};
-      }
-
-      #network.disconnected {
-          color: #${colors.base08};
-          border-color: #${colors.base08};
-      }
-
-      #custom-expand-icon {
-          margin-right: 20px;
-      }
+      #battery.charging, #battery.plugged { color: #${colors.base0B}; }
+      #network.disconnected { color: #${colors.base08}; }
 
       tooltip {
           padding: 2px;
           background-color: #${colors.base00};
           border: 1px solid #${colors.base0D};
       }
+      tooltip label { color: #${colors.base05}; }
 
-      tooltip label {
-          color: #${colors.base05};
-      }
-
-      #custom-update {
-          font-size: 10px;
-      }
-
-      .hidden {
-          opacity: 0;
-      }
-
-      #custom-screenrecording-indicator {
-          min-width: 12px;
-          margin-left: 8.75px;
-          font-size: 10px;
-      }
-
-      #custom-screenrecording-indicator.active {
-          color: #${colors.base08};
-      }
-
-      /* abillity to override */
-      ${themeWaybar.css or ""}
+      ${config.theme.waybar.style}
     '';
   };
 }
