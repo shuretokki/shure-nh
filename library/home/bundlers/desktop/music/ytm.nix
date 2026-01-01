@@ -4,32 +4,32 @@ let
 
   colorOverrides = ''
     html:not(.style-scope) {
-      --ctp-rosewater: ${colors.base06};
-      --ctp-flamingo: ${colors.base0F};
-      --ctp-pink: ${colors.base0E};
-      --ctp-mauve: ${colors.base0E};
-      --ctp-red: ${colors.base08};
-      --ctp-maroon: ${colors.base08};
-      --ctp-peach: ${colors.base09};
-      --ctp-yellow: ${colors.base0A};
-      --ctp-green: ${colors.base0B};
-      --ctp-teal: ${colors.base0C};
-      --ctp-sky: ${colors.base0C};
-      --ctp-sapphire: ${colors.base0D};
-      --ctp-blue: ${colors.base0D};
-      --ctp-lavender: ${colors.base07};
-      --ctp-text: ${colors.base05};
-      --ctp-subtext1: ${colors.base04};
-      --ctp-subtext0: ${colors.base04};
-      --ctp-overlay2: ${colors.base03};
-      --ctp-overlay1: ${colors.base03};
-      --ctp-overlay0: ${colors.base02};
-      --ctp-surface2: ${colors.base02};
-      --ctp-surface1: ${colors.base01};
-      --ctp-surface0: ${colors.base01};
-      --ctp-base: ${colors.base00};
-      --ctp-mantle: ${colors.base00};
-      --ctp-crust: ${colors.base00};
+      --ytm-rosewater: ${colors.base06};
+      --ytm-flamingo: ${colors.base0F};
+      --ytm-pink: ${colors.base0E};
+      --ytm-mauve: ${colors.base0E};
+      --ytm-red: ${colors.base08};
+      --ytm-maroon: ${colors.base08};
+      --ytm-peach: ${colors.base09};
+      --ytm-yellow: ${colors.base0A};
+      --ytm-green: ${colors.base0B};
+      --ytm-teal: ${colors.base0C};
+      --ytm-sky: ${colors.base0C};
+      --ytm-sapphire: ${colors.base0D};
+      --ytm-blue: ${colors.base0D};
+      --ytm-lavender: ${colors.base07};
+      --ytm-text: ${colors.base05};
+      --ytm-subtext1: ${colors.base04};
+      --ytm-subtext0: ${colors.base04};
+      --ytm-overlay2: ${colors.base03};
+      --ytm-overlay1: ${colors.base03};
+      --ytm-overlay0: ${colors.base02};
+      --ytm-surface2: ${colors.base02};
+      --ytm-surface1: ${colors.base01};
+      --ytm-surface0: ${colors.base01};
+      --ytm-base: ${colors.base00};
+      --ytm-mantle: ${colors.base00};
+      --ytm-crust: ${colors.base00};
     }
   '';
 
