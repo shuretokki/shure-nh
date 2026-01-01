@@ -40,6 +40,7 @@ in {
     stylix.targets = {
       vscode.enable = lib.mkDefault false;
       hyprpaper.enable = lib.mkDefault false;
+      spicetify.enable = false;
       zen-browser.profileNames = [ "default" ];
     };
 
