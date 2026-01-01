@@ -191,7 +191,7 @@ in {
     # Extensions - Uncomment the ones you want to enable
     # Full docs: https://gerg-l.github.io/spicetify-nix/extensions.html
     enabledExtensions = with spicePkgs.extensions; [
-      fullAppDisplay
+      # fullAppDisplay
       shuffle
       hidePodcasts
       adblock
@@ -234,7 +234,7 @@ in {
       # lastfm
       # savePlaylists
       # autoSkip
-      # fullScreen
+      fullScreen
       # playNext
       # volumePercentage
       # copyLyrics
@@ -257,8 +257,11 @@ in {
       # aiBandBlocker
     ];
 
+    # https://gerg-l.github.io/spicetify-nix/snippets.html
     enabledSnippets = [
       # "title": "Dynamic Search Bar",
+      # "description": "Make the search bar dynamic, so it only shows when you hover over it.",
+      # "code":
       ''
         :root {
           margin-top: -16px;
@@ -273,6 +276,7 @@ in {
           transition: opacity 0.3s ease-in-out;
         }
         #global-nav-bar:hover {
+          background: ${colors.base00};
           z-index: 12;
           opacity: 1;
         }
@@ -304,7 +308,49 @@ in {
           display: none;
         }
       ''
-      # Add more snippets here as separate strings
+
+      # "title": "Dynamic Left Sidebar",
+      # "description": "Make the left sidebar dynamic, so it only shows when you hover over it and pushes the main content to the right.",
+      # "code":
+      ''
+        #Desktop_LeftSidebar_Id {
+          width: 0px;
+          transition: width 0.5s ease, padding-left 0.5s ease;
+          z-index: 12;
+        }
+        #Desktop_LeftSidebar_Id:hover {
+          padding-left: 8px;
+          width: 280px;
+        }
+        :root {
+          margin-left: -8px;
+        }
+        svg[data-encore-id='icon'] {
+          overflow: visible;
+        }
+        #Desktop_LeftSidebar_Id span {
+          white-space: nowrap;
+        }
+      ''
+
+      # "title": "Modern ScrollBar",
+      # "description": "Thin rounded modern scrollbar",
+      # "code":
+      ''
+        .os-scrollbar-handle {
+          width: 0.25rem !important;
+          border-radius: 10rem !important;
+          transition: width 300ms ease-in-out;
+        }
+        .os-scrollbar-handle:focus,
+        .os-scrollbar-handle:focus-within,
+        .os-scrollbar-handle:hover {
+          width: 0.35rem !important;
+        }
+      ''
+
+      # Add more snippets here...
+      # See more: https://github.com/spicetify/marketplace/blob/main/resources/snippets.json
     ];
   };
 
