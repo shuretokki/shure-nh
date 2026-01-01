@@ -1,7 +1,10 @@
 { inputs }:
 let
   lib = inputs.nixpkgs.lib;
-  vars = import ../vars.nix;
+
+  vars = if builtins.pathExists ../vars.local.nix
+         then import ../vars.local.nix
+         else import ../vars.nix;
 in
 {
   mkHost = {
@@ -11,6 +14,12 @@ in
     hostVars ? {},
     extraModules ? []
   }:
+
+  assert builtins.isString hostname || throw "hostname must be a string";
+  assert builtins.isString username || throw "username must be a string";
+  assert hostname != "" || throw "hostname cannot be empty";
+  assert username != "" || throw "username cannot be empty";
+
   let
     mergedVars = vars // hostVars // { inherit hostname username; };
   in
@@ -22,6 +31,22 @@ in
       ../users/${username}/nixos.nix
 
       inputs.stylix.nixosModules.stylix
+
+      ({ config, ... }: {
+        assertions = [
+          {
+            assertion = config.networking.hostName == hostname;
+            message = ''
+              HOSTNAME MISMATCH - BUILD BLOCKED
+
+              [  Expected  ]: ${hostname}
+              [ Configured ]: ${config.networking.hostName}
+
+              Fix flake.nix before rebuilding.
+            '';
+          }
+        ];
+      })
 
       inputs.home-manager.nixosModules.home-manager {
         home-manager = {
