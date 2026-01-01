@@ -1,4 +1,7 @@
 {
+  gitname = "Your Name";
+  email = "you@example.com";
+
   browser = "zen"; # zen, firefox, chromium
   terminal = "warp-terminal"; # warp-terminal, kitty, alacritty
   editor = "code"; # code, nvim
