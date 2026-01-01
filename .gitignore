@@ -12,3 +12,6 @@ secrets.nix
 *.swp
 .github/instructions/
 secrets.nix
+
+vars.local.nix
+git.local.nix
