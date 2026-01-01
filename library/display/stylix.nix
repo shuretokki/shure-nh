@@ -1,40 +1,43 @@
 # https://stylix.danth.me/
-{ lib, pkgs, vars, ... }:
+{ lib, pkgs, vars, config, ... }:
 let
-  themeDir = ./themes + "/${vars.theme}";
-  themeData = import (themeDir + "/default.nix") { inherit pkgs; };
 in {
   stylix = {
     enable = true;
     autoEnable = true;
 
-    base16Scheme = themeData.scheme;
-    image = themeDir + "/wallpapers/${themeData.wallpaperDefault}";
-    polarity = themeData.polarity;
+    base16Scheme = config.theme.scheme;
+    image = config.theme.wallpaper;
+    polarity = config.theme.polarity;
 
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = lib.mkForce themeData.fonts.mono;
+        name = lib.mkForce config.theme.fonts.mono;
       };
       sansSerif = {
         package = pkgs.inter;
-        name = themeData.fonts.sans;
+        name = config.theme.fonts.sans;
       };
       sizes = {
-        terminal = lib.mkDefault themeData.fonts.size;
+        terminal = lib.mkDefault config.theme.fonts.size;
         applications = 11;
       };
     };
 
     cursor = {
       package = pkgs.apple-cursor;
-      name = lib.mkDefault themeData.cursor.name;
-      size = lib.mkDefault themeData.cursor.size;
+      name = lib.mkDefault config.theme.cursor.name;
+      size = lib.mkDefault config.theme.cursor.size;
     };
 
     targets.grub.enable = false;
   };
+
+  imports = [
+    ./themes/default.nix
+    (./themes + "/${vars.theme}/default.nix")
+  ];
 
   home-manager.users.${vars.username} = { config, lib, ... }: {
     stylix.targets = {
@@ -47,7 +50,9 @@ in {
     # auto-update wallpaper symlink on rebuild
     home.activation.linkWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "${config.home.homeDirectory}/Wallpapers"
-      ln -sfn "${themeDir}/wallpapers" "${config.home.homeDirectory}/Wallpapers/current"
+      if [ -d "${./themes + "/${vars.theme}/wallpapers"}" ]; then
+         ln -sfn "${./themes + "/${vars.theme}/wallpapers"}" "${config.home.homeDirectory}/Wallpapers/current"
+      fi
     '';
   };
 }
