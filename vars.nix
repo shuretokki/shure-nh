@@ -1,6 +1,4 @@
 {
-  username = "shure";
-
   browser = "zen"; # zen, firefox, chromium
   terminal = "warp-terminal"; # warp-terminal, kitty, alacritty
   editor = "code"; # code, nvim
