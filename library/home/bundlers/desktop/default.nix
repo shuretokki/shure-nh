@@ -3,7 +3,7 @@
     ./browser.nix
     ./terminal.nix
     ./editor.nix
-    ./music.nix
+    ./music
     ./files.nix
     ./services.nix
     ./mime.nix
