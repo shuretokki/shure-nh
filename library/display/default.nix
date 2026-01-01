@@ -1,6 +1,6 @@
-{ config, pkgs, inputs, vars, ... }:
+{ config, pkgs, lib, inputs, vars, ... }:
 let
-  hyprland-config = import ./hyprland { inherit config pkgs vars; };
+  hyprland-config = import ./hyprland { inherit config pkgs lib vars; };
 in {
   imports = [ ./stylix.nix ];
 
