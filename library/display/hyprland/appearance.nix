@@ -1,5 +1,5 @@
 # https://wiki.hypr.land/Configuring/Variables/
-{ config, ... }:
+{ config, lib, ... }:
 let
   colors = config.lib.stylix.colors;
 in {
@@ -24,9 +24,9 @@ in {
     };
     shadow = {
         enabled = config.theme.hyprland.shadows;
-        range = 15;
-        render_power = 3;
-        color = "0x55000000";
+        range = lib.mkForce 15;
+        render_power = lib.mkForce 3;
+        color = lib.mkForce "0x55000000";
     };
   };
 
