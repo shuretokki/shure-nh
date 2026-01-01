@@ -141,7 +141,7 @@ in {
 
     theme = {
       name = "stylix";
-      src = ./.;  # containing color.ini and user.css
+      src = pkgs.writeTextDir "color.ini" "";  # write color.ini since spicetify need it
       injectCss = true;
       replaceColors = true;
       overwriteAssets = false;
@@ -149,23 +149,43 @@ in {
       additionalCss = builtins.readFile ./user.css;
     };
 
-    colorScheme = lib.mkForce "Gruvbox";
+    # All available color scheme components
+    # Reference: https://spicetify.app/docs/development/customization/#color-scheme
     customColorScheme = {
-      text = colors.base05;
-      subtext = colors.base04;
-      main = colors.base01;
-      sidebar = colors.base01;
-      player = colors.base01;
-      card = colors.base02;
-      shadow = colors.base00;
-      selected-row = colors.base03;
-      button = colors.base0D;
-      button-active = colors.base0C;
-      button-disabled = colors.base03;
-      tab-active = colors.base0D;
-      notification = colors.base0B;
-      notification-error = colors.base08;
-      misc = colors.base04;
+      # text
+      text = colors.base05;  # main text, playlist names, headings
+      subtext = colors.base04;  # secondary text, artist names
+
+      # backgrounds
+      main = colors.base00;  # main background
+      sidebar = colors.base00;  # sidebar background
+      player = colors.base00;  # player bar background
+      card = colors.base01;  # popup cards, hover states
+      shadow = colors.base00;  # shadows
+      main-secondary = colors.base01;  # selected song rows, cards
+
+      # buttons
+      button = colors.base0D;  # primary buttons, like button
+      button-secondary = colors.base04;  # download/options buttons
+      button-active = colors.base0C;  # button hover state
+      button-disabled = colors.base02;  # seekbar bg, volume bg, scrollbar
+
+      # navigation
+      nav-active-text = colors.base05;  # active nav item text
+      nav-active = colors.base02;  # sidebar active button bg
+      selected-row = colors.base02;  # selected row highlight
+      tab-active = colors.base02;  # active tab background
+
+      # playback
+      play-button = colors.base0D;  # main play button color
+      playback-bar = colors.base0D;  # seekbar fg, volume fg
+
+      # notifications
+      notification = colors.base01;  # notification background
+      notification-error = colors.base08;  # error notification
+
+      # misc
+      misc = colors.base04;  # miscellaneous elements
     };
 
     # Extensions - Uncomment the ones you want to enable
@@ -176,7 +196,7 @@ in {
       hidePodcasts
       adblock
 
-      # ── Official Extensions ──
+      # -... Official Extensions
       # autoSkipExplicit
       # autoSkipVideo
       # bookmark
@@ -186,7 +206,7 @@ in {
       # trashbin
       # webnowplaying
 
-      # ── Community Extensions ──
+      # -... Community Extensions
       # groupSession
       # powerBar
       # seekSong
@@ -237,6 +257,19 @@ in {
       # aiBandBlocker
     ];
   };
+
+  # {
+  #   "title": "Dynamic Search Bar",
+  #   "description": "Make the search bar dynamic, so it only shows when you hover over it.",
+  #   "code": ":root {\n  margin-top: -16px;\n}\n#global-nav-bar {\n  position: absolute;\n  width: calc(100% + 16px);\n  background: none;\n  opacity: 0;\n  z-index: 12;\n  top: 16px;\n  transition: opacity 0.3s ease-in-out;\n}\n#global-nav-bar:hover {\n  z-index: 12;\n  opacity: 1;\n}\n.Root__now-playing-bar {\n  transform: translateY(16px);\n}\naside[aria-label=\"Now playing bar\"] {\n  transform: translateY(-8px);\n}\n.Root__globalNav .main-globalNav-navLink {\n  background: none;\n}\n.e_N7UqrrJQ0fAw9IkNAL {\n  padding-top: 56px;\n}\n.marketplace-tabBar, .marketplace-tabBar-nav {\n  padding-top: 48px;\n}\n.marketplace-header {\n  padding-top: 16px;\n}\n.marketplace-header__left {\n  padding-top: 16px;\n}\n.main-topBar-background {\n  background-color: #121212;\n}\n.liw6Y_iPu2DJRwk10x9d .FLyfurPaIDAlwjsF3mLf{\n  display: none;\n}",
+  #   "preview": "resources/assets/snippets/dynamic-search-bar.gif"
+  # },
+
+  # enabledSnippets = [
+  #   ''
+
+  #   ''
+  # ]
 
   home.packages = with pkgs; [
     (writeShellScriptBin "spotify-th" ''
