@@ -37,7 +37,7 @@ in
           {
             assertion = config.networking.hostName == hostname;
             message = ''
-              HOSTNAME MISMATCH - BUILD BLOCKED
+              [HOSTNAME MISMATCH] - BUILD BLOCKED
 
               [  Expected  ]: ${hostname}
               [ Configured ]: ${config.networking.hostName}
