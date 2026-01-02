@@ -3,7 +3,6 @@
         wget
         curl
         git
-        gh
         unzip
         zip
         fastfetch
