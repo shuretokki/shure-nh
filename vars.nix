@@ -1,19 +1,24 @@
 {
-  gitname = "Your Name";
-  email = "you@example.com";
+  username = "shure";
 
-  browser = "zen"; # zen, firefox, chromium
-  terminal = "warp-terminal"; # warp-terminal, kitty, alacritty
-  editor = "code"; # code, nvim
+  # gitname = "Your Name";
+  # email = "you@example.com";
+
+  gitname = "Tri R. Utomo";
+  email = "tri.r.utomo@gmail.com";
+
+  # default
+  browser = "zen"; # zen, chromium
+  terminal = "warp-terminal"; # warp-terminal, alacritty, ghostty
+  editor = "code"; # code,
   fileManager = "nautilus"; # nautilus
   musicPlayer = "spotify"; # spotify, youtube-music
 
-  theme = "gruvbox"; # default, gruvbox
+  theme = "default"; # default
 
   features = {
     cli = true;
     desktop = true;
-    gaming = false;
   };
 }
 
