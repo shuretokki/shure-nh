@@ -5,8 +5,7 @@
     nodejs
     python3
     nil
-    nixpkgs-fmt
+    nixfmt-rfc-style
     direnv
-    alejandra
   ];
 }
