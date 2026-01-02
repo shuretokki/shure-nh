@@ -1,6 +1,7 @@
 # https://stylix.danth.me/
 { lib, pkgs, vars, config, ... }:
 let
+  wpBase = config.theme.wallpaper;
 in {
   stylix = {
     enable = true;
@@ -49,10 +50,16 @@ in {
 
     # auto-update wallpaper symlink on rebuild
     home.activation.linkWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      mkdir -p "${config.home.homeDirectory}/Wallpapers"
-      if [ -d "${./themes + "/${vars.theme}/wallpapers"}" ]; then
-         ln -sfn "${./themes + "/${vars.theme}/wallpapers"}" "${config.home.homeDirectory}/Wallpapers/current"
-      fi
+      DIR="${config.home.homeDirectory}/Wallpapers"
+      mkdir -p "$DIR/primary"
+
+      for f in ${wpBase}/*; do
+        name=$(basename "$f")
+        # only create symlink if file doesn't exist
+        [ ! -e "$DIR/primary/$name" ] && ln -sf "$f" "$DIR/primary/$name"
+      done
+
+      ln -sfn "$DIR/primary" "$DIR/current"
     '';
   };
 }
