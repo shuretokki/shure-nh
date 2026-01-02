@@ -13,6 +13,16 @@
     };
 
     inputs = {
+        antigravity = {
+            url = "github:jacopone/antigravity-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        apple-fonts = {
+            url = "github:Lyndeno/apple-fonts.nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         nixpkgs = {
             url = "nixpkgs/nixos-unstable";
         };
@@ -47,10 +57,6 @@
             inputs.home-manager.follows = "home-manager";
         };
 
-        apple-fonts = {
-            url = "github:Lyndeno/apple-fonts.nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
 
         sops-nix = {
             url = "github:Mic92/sops-nix";
@@ -76,44 +82,35 @@
         nixos-hardware = {
             url = "github:NixOS/nixos-hardware";
         };
-
-        antigravity = {
-            url = "github:jacopone/antigravity-nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
     outputs = { self, nixpkgs, ... }@inputs:
     let
         libs = import ./lib { inherit inputs; };
     in {
-        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
+        # dev shell that run using 'nix develop'
         devShells.x86_64-linux.default = let
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
         in pkgs.mkShell {
             packages = with pkgs; [ sops age ];
             shellHook = ''
-                echo "dev shell"
-                echo "sops secrets/secrets.yaml  - Edit secrets"
             '';
         };
 
-        nixosConfigurations = {
-            default = libs.mkHost {
-                hostname = "desktop";
-                username = "shure";
-            };
+        # we find each directory in ./hosts
+        # and generate a nixos configuration for it
+        nixosConfigurations = let
+            hosts = ./hosts;
 
-            desktop = libs.mkHost {
-                hostname = "desktop";
-                username = "shure";
-                # override globals from vars.nix
-                hostVars = {
-                    timezone = "Asia/Jakarta";
-                    locale = "en_US.UTF-8";
-                };
+            dir = builtins.attrNames
+                (lib.filterAttrs (n: v: v == "directory") (builtins.readDir hosts));
+
+            config = hostname: libs.mkHost {
+                inherit hostname;
+                username = vars.username;
             };
-        };
+        in
+            lib.genAttrs dir config;
     };
 }
