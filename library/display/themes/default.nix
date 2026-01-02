@@ -16,8 +16,9 @@ in {
     };
 
     fonts = {
-      mono = mkOption { type = types.str; default = "JetBrainsMono Nerd Font"; };
+      serif = mkOption { type = types.str; default = "New York"; };
       sans = mkOption { type = types.str; default = "SF Pro Rounded"; };
+      mono = mkOption { type = types.str; default = "JetBrainsMono Nerd Font"; };
       size = mkOption { type = types.int; default = 12; };
     };
 
@@ -29,7 +30,7 @@ in {
     wallpaper = mkOption {
       type = types.path;
       description = "Path to the wallpaper file";
-      default = "";
+      default = "./default/wallpapers";
     };
 
     grub = {
