@@ -26,7 +26,8 @@ in {
     playerctl
     vicinae
     libnotify
-    wl-clipboard
+
+    apple-cursor
 
     # vicinae exts deps
     imagemagick
