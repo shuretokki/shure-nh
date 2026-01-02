@@ -29,7 +29,13 @@ in {
 
     wallpaper = mkOption {
       type = types.path;
-      description = "Path to the wallpaper file";
+      description = "Path to the main wallpaper image (stylix)";
+      default = ./default/wallpapers/gruvbox_scenery.png;
+    };
+
+    wallpaperDir = mkOption {
+      type = types.path;
+      description = "Path to the wallpapers directory (for symlinks)";
       default = ./default/wallpapers;
     };
 

@@ -1,7 +1,7 @@
 # https://stylix.danth.me/
 { lib, pkgs, vars, config, ... }:
 let
-  wpBase = config.theme.wallpaper;
+  wpBase = config.theme.wallpaperDir;
 in {
   stylix = {
     enable = true;
