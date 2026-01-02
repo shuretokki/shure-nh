@@ -16,14 +16,10 @@
         nixpkgs.url = "nixpkgs/nixos-unstable";
 
         hyprland.url = "github:hyprwm/Hyprland";
+
         hyprland-plugins = {
             url = "github:hyprwm/hyprland-plugins";
             inputs.hyprland.follows = "hyprland";
-        };
-
-        nh = {
-            url = "github:nix-community/nh";
-            inputs.nixpkgs.follows = "nixpkgs";
         };
 
         home-manager = {
@@ -31,7 +27,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        vicinae.url = "github:vicinaehq/vicinae";
         vicinae-extensions = {
             url = "github:vicinaehq/extensions";
             inputs.nixpkgs.follows = "nixpkgs";
