@@ -55,7 +55,7 @@
           favorite = true;
           preferences = {
             # Required ..
-            wallpaperPath = "${config.home.homeDirectory}/${vars.wallpaperDir}";
+            wallpaperPath = "${config.home.homeDirectory}/Wallpapers/current";
             colorGenTool = "none";  # none|matugen|pywal|wpgtk|schemer2|colorz|haishoku|wallust
             # Customization ..
             gridRows = "4";  # 3|4|5|6
