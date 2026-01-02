@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ config, pkgs, inputs, ... }: {
   fonts.fontDir.enable = true;
   fonts.enableDefaultPackages = true;
 
@@ -9,36 +9,34 @@
     liberation_ttf
 
     nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
-    nerd-fonts.symbols-only
-    nerd-fonts.meslo-lg
-    nerd-fonts.hack
+    # nerd-fonts.fira-code
+    # nerd-fonts.symbols-only
+    # nerd-fonts.meslo-lg
+    # nerd-fonts.hack
 
     inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-pro
     inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-mono
     inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.ny
 
     inter
-    roboto
-    roboto-mono
-    open-sans
-    lato
-    montserrat
-    poppins
-    source-sans-pro
-    source-code-pro
-    ubuntu-classic
+    # roboto
+    # roboto-mono
+    # open-sans
+    # lato
+    # source-sans-pro
+    # source-code-pro
+    # ubuntu-classic
 
     fira
-    fira-code
-    cascadia-code
-    iosevka
-    victor-mono
+    # fira-code
+    # cascadia-code
+    # iosevka
+    # victor-mono
 
     eb-garamond
-    libre-baskerville
-    crimson-pro
-    merriweather
+    # libre-baskerville
+    # crimson-pro
+    # merriweather
 
     source-han-sans
     source-han-serif
@@ -47,9 +45,9 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      serif = [ "New York" "Liberation Serif" "Noto Serif" ];
-      sansSerif = [ "SF Pro Rounded" "Inter" "Noto Sans" ];
-      monospace = [ "SF Mono" "JetBrainsMono Nerd Font" ];
+      serif = [ config.theme.fonts.serif "Liberation Serif" "Noto Serif" ];
+      sansSerif = [ config.theme.fonts.sans "SF Pro Rounded" "Inter" "Noto Sans" ];
+      monospace = [ config.theme.fonts.mono "JetBrainsMono Nerd Font" ];
       emoji = [ "Noto Color Emoji" ];
     };
   };
