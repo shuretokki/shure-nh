@@ -54,7 +54,7 @@
           preferences = {
             # Required ..
             wallpaperPath = "${config.home.homeDirectory}/Wallpapers/current";
-            colorGenTool = "none";  # none|matugen|pywal|wpgtk|schemer2|colorz|haishoku|wallust
+            colorGenTool = "none";  # this settings crash with our color scheme so better be disabled
             # Customization ..
             gridRows = "4";  # 3|4|5|6
             showImageDetails = true;
