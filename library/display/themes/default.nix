@@ -30,7 +30,7 @@ in {
     wallpaper = mkOption {
       type = types.path;
       description = "Path to the wallpaper file";
-      default = "./default/wallpapers";
+      default = ./default/wallpapers;
     };
 
     grub = {
