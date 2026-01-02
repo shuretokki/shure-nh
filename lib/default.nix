@@ -21,7 +21,9 @@ in
   assert username != "" || throw "username cannot be empty";
 
   let
-    merge = vars // hostVars // { inherit hostname username; };
+    host = ../hosts/${hostname}/vars.nix;
+    hostfile = if builtins.pathExists host then import host else {};
+    merge = vars // hostfile // host // { inherit hostname username; };
   in
   lib.nixosSystem {
     inherit system;
