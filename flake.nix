@@ -13,9 +13,13 @@
     };
 
     inputs = {
-        nixpkgs.url = "nixpkgs/nixos-unstable";
+        nixpkgs = {
+            url = "nixpkgs/nixos-unstable";
+        };
 
-        hyprland.url = "github:hyprwm/Hyprland";
+        hyprland = {
+            url = "github:hyprwm/Hyprland";
+        };
 
         hyprland-plugins = {
             url = "github:hyprwm/hyprland-plugins";
@@ -69,7 +73,9 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        nixos-hardware.url = "github:NixOS/nixos-hardware";
+        nixos-hardware = {
+            url = "github:NixOS/nixos-hardware";
+        };
 
         antigravity = {
             url = "github:jacopone/antigravity-nix";
