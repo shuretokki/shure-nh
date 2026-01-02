@@ -45,6 +45,21 @@ in
               Fix flake.nix before rebuilding.
             '';
           }
+          {
+            # check if user directory exists
+            # prevent confusing "file not found" errors
+            assertion = builtins.pathExists ../users/${username};
+            message = ''
+              [USER CONFIG MISSING] - BUILD BLOCKED
+
+              The user directory "users/${username}" does not exist.
+
+              If you changed the username:
+              1. Rename "users/oldname" to "users/${username}"
+              2. Rename "home/oldname" to "home/${username}" (if on existing system)
+              3. Update ownership: chown -R ${username}:users /home/${username}
+            '';
+          }
         ];
       })
 
