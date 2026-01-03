@@ -81,4 +81,9 @@
       };
     };
   };
+
+  xdg.configFile."vicinae/settings.json" = {
+    force = true;
+    text = builtins.toJSON config.programs.vicinae.settings;
+  };
 }
