@@ -7,7 +7,6 @@
   # PipeWire provides PulseAudio compatibility via pipewire-pulse
   services.pulseaudio.enable = false;
 
-  # RealtimeKit, D-Bus service that hands out realtime scheduling priority
   # Required by PipeWire and PulseAudio for low-latency audio
   security.rtkit = {
     enable = true;
