@@ -1,9 +1,6 @@
 {
   username = "shure";
 
-  # gitname = "Your Name";
-  # email = "you@example.com";
-
   gitname = "Tri R. Utomo";
   email = "tri.r.utomo@gmail.com";
 
@@ -14,6 +11,9 @@
   fileManager = "nautilus"; # nautilus
   musicPlayer = "spotify"; # spotify, youtube-music
 
+  locale = "en_US.UTF-8";
+  timezone = "Asia/Jakarta";
+
   theme = "default"; # default
 
   features = {
@@ -21,4 +21,3 @@
     desktop = true;
   };
 }
-
