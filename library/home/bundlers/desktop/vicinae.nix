@@ -1,6 +1,14 @@
 # https://github.com/vicinaehq/vicinae
 # https://docs.vicinae.com/nixos
-{ config, lib, pkgs, vars, inputs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  vars,
+  inputs,
+  ...
+}:
+{
   programs.vicinae = {
     enable = true;
     systemd = {
@@ -21,6 +29,40 @@
       hypr-keybinds
     ];
 
+    themes = {
+      sync = {
+        meta = {
+          version = 1;
+          name = "Sync";
+          description = "Sync with current theme";
+          variant = config.theme.polarity;
+          inherits = if config.theme.polarity == "dark" then "vicinae-dark" else "vicinae-light";
+        };
+
+        colors = let
+          c = config.lib.stylix.colors.withHashtag;
+        in {
+          core = {
+            background = c.base00;
+            foreground = c.base05;
+            secondary_background = c.base01;
+            border = c.base02;
+            accent = c.base0D;
+          };
+          accents = {
+            blue = c.base0D;
+            green = c.base0B;
+            magenta = c.base0F;
+            orange = c.base09;
+            purple = c.base0E;
+            red = c.base08;
+            yellow = c.base0A;
+            cyan = c.base0C;
+          };
+        };
+      };
+    };
+
     settings = {
       close_on_focus_loss = true;
       consider_preedit = true;
@@ -36,11 +78,11 @@
       };
       theme = {
         light = {
-          name = "gruvbox-light";
+          name = "sync";
           icon_theme = "default";
         };
         dark = {
-          name = "gruvbox-dark";
+          name = "sync";
           icon_theme = "default";
         };
       };
@@ -53,17 +95,17 @@
           favorite = true;
           preferences = {
             # Required ..
-            wallpaperPath = "${config.home.homeDirectory}/Wallpapers/current";
-            colorGenTool = "none";  # this settings crash with our color scheme so better be disabled
+            wallpaperPath = "${config.home.homeDirectory}/.local/share/awww";
+            colorGenTool = "none"; # this settings crash with our color scheme so better be disabled
             # Customization ..
-            gridRows = "4";  # 3|4|5|6
+            gridRows = "4"; # 3|4|5|6
             showImageDetails = true;
-            transitionType = "none";  # none|simple|fade|left|right|top|bottom|wipe|wave|grow|center|any|outer|random
-            transitionDuration = "1";   # 8|5|3|2|1 (seconds)
-            transitionStep = "90";      # 1|45|90|120|200|255 (color steps)
+            transitionType = "none"; # none|simple|fade|left|right|top|bottom|wipe|wave|grow|center|any|outer|random
+            transitionDuration = "1"; # 8|5|3|2|1 (seconds)
+            transitionStep = "90"; # 1|45|90|120|200|255 (color steps)
             transitionFPS = "60";
-            toggleVicinaeSetting = false;  # Close vicinae after selecting wallpaper
-            postProduction = "no";        # no|grayscale|grayscaleblur|grayscaleheavyblur|lightblur|lightblurdarken|heavyblur|heavyblurdarken|negate
+            toggleVicinaeSetting = false; # Close vicinae after selecting wallpaper
+            postProduction = "no"; # no|grayscale|grayscaleblur|grayscaleheavyblur|lightblur|lightblurdarken|heavyblur|heavyblurdarken|negate
           };
         };
         "@sovereign/hypr-keybinds-0" = {
