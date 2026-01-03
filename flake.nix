@@ -89,6 +89,7 @@
     in {
 
         # dev shell that run using 'nix develop'
+        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
         devShells.x86_64-linux.default = let
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
         in pkgs.mkShell {
