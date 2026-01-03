@@ -6,6 +6,4 @@
     extraGroups = [ "networkmanager" "wheel" "input" "docker" "video" "audio" "ydotool" ];
     shell = pkgs.bash;
   };
-
-  programs.bash.enable = true;
 }
