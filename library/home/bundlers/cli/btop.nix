@@ -12,7 +12,7 @@ in
   programs.btop = {
     enable = lib.mkDefault true;
 
-    settings = {
+    settings = lib.mkDefault {
       color_theme = "sync";
       theme_background = false;
       truecolor = true;
@@ -49,7 +49,7 @@ in
       log_level = "WARNING";
     };
 
-    themes = lib.mkDefault {
+    themes = {
       sync = ''
         theme[main_bg]="#${c.base00}"
         theme[main_fg]="#${c.base05}"
