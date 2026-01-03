@@ -49,8 +49,8 @@ in
       log_level = "WARNING";
     };
 
-    themes = {
-      stylix = ''
+    themes = lib.mkDefault {
+      sync = ''
         theme[main_bg]="#${c.base00}"
         theme[main_fg]="#${c.base05}"
         theme[title]="#${c.base05}"
