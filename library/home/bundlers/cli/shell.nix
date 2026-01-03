@@ -12,10 +12,6 @@
       check = lib.mkDefault "cd ~/shuredotnix && nix flake check";
       fmt = lib.mkDefault "cd ~/shuredotnix && nix fmt";
 
-      gc = lib.mkDefault "sudo nix-collect-garbage -d";
-      gc-week = lib.mkDefault "sudo nix-collect-garbage --delete-older-than 7d";
-      gc-month = lib.mkDefault "sudo nix-collect-garbage --delete-older-than 30d";
-
       nix-size = lib.mkDefault "nix path-info -Sh /run/current-system";
       nix-store-size = lib.mkDefault "du -sh /nix/store";
 
