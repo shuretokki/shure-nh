@@ -71,8 +71,6 @@
 
       gs = "git status";
       gd = "git diff";
-      gs = "git status";
-      gd = "git diff";
       ga = "git add";
       gp = "git push";
       gpl = "git pull";
