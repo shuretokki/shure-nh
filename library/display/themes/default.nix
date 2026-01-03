@@ -67,34 +67,6 @@ in {
               cp -a $src/assets/assets-other/other-1080p/*.png $out/
           '';
         };
-      };
-    };
-
-    sddm = {
-      enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable custom SDDM theming";
-      };
-
-      theme = mkOption {
-        type = types.package;
-        description = "SDDM theme package to use";
-        default = pkgs.stdenv.mkDerivation {
-          name = "silent-sddm";
-          src = pkgs.fetchFromGitHub {
-            owner = "uiriansan";
-            repo = "SilentSDDM";
-            rev = "3705a132db1e101a5ec2aa14b0e28e8ccd78866a";
-            hash = "sha256-znjp0gAxt+1wkxp/rqc0NPAnQGikbCAylgWGussZj0I=";
-          };
-          installPhase = ''
-            mkdir -p $out/share/sddm/themes/SilentSDDM
-            cp -R ./* $out/share/sddm/themes/SilentSDDM
-            # Simple install, actual config might need font replacement in theme definition where used
-          '';
-        };
-      };
     };
 
     waybar = {
