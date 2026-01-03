@@ -9,6 +9,7 @@
 
       push.autoSetupRemote = true;
       pull.rebase = true;
+      credential.helper = "!gh auth git-credential";
 
       alias = {
         last = "log -1 HEAD";
