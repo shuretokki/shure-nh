@@ -1,9 +1,17 @@
-{ config, pkgs, vars, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
-  sugarDark = pkgs.sddm-sugar-dark.override {
-    themeConfig.Background = "${config.theme.wallpaper}";
+  theme = pkgs.where-is-my-sddm-theme.override {
+    themeConfig.General = {
+      background = builtins.toString config.theme.wallpaper;
+      backgroundMode = "fill"; # none, fill, aspect, cover
+    };
   };
-in {
+in
+{
   services.displayManager.sddm = {
     enable = true;
     wayland = {
@@ -12,21 +20,15 @@ in {
     };
 
     autoNumlock = true;
-    theme = "sugar-dark";
+    theme = "where_is_my_sddm_theme";
 
-    settings = {
-      Theme = {
-        CursorTheme = config.theme.cursor.name;
-        CursorSize = config.theme.cursor.size;
-      };
+    settings.Theme = {
+      CursorTheme = config.theme.cursor.name;
+      CursorSize = config.theme.cursor.size;
     };
 
-    # autoLogin = {
-    #   relogin = false;
-    # };
-    package = pkgs.libsForQt5.sddm;
-    extraPackages = [ sugarDark ];
+    extraPackages = [ theme ];
   };
 
-  environment.systemPackages = [ sugarDark ];
+  environment.systemPackages = [ theme ];
 }
